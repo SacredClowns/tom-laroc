@@ -13,7 +13,6 @@ import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
 import FrequencyOrb from "./FrequencyOrb";
 import Particles from "./Particles";
-import Beams from "./Beams";
 
 function CameraRig() {
   useFrame((state) => {
@@ -58,7 +57,6 @@ export default function Scene() {
       <ambientLight intensity={0.4} />
       <pointLight position={[4, 3, 5]} intensity={20} />
 
-      <Beams count={small ? 5 : 7} />
       <FrequencyOrb detail={detail} />
       <Particles count={particleCount} />
 

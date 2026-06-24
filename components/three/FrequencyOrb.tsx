@@ -85,12 +85,6 @@ export default function FrequencyOrb({ detail = 24 }: { detail?: number }) {
           uniforms={uniforms}
         />
       </mesh>
-
-      {/* faint inner wireframe for depth */}
-      <mesh scale={0.985}>
-        <icosahedronGeometry args={[1.25, 3]} />
-        <meshBasicMaterial wireframe color="#ffffff" transparent opacity={0.04} />
-      </mesh>
     </group>
   );
 }

@@ -7,7 +7,6 @@ import * as THREE from "three";
 import type { Mix } from "@/lib/mixcloud";
 import { setPlaying } from "@/lib/audio";
 import FrequencyOrb from "@/components/three/FrequencyOrb";
-import Beams from "@/components/three/Beams";
 import Particles from "@/components/three/Particles";
 import VizWave from "@/components/viz/VizWave";
 import VizWarp from "@/components/viz/VizWarp";
@@ -41,7 +40,6 @@ function VizScene({ mode }: { mode: Mode }) {
       <ambientLight intensity={0.4} />
       {mode === "orb" && (
         <>
-          <Beams count={10} />
           <FrequencyOrb detail={26} />
           <Particles count={1400} />
         </>
