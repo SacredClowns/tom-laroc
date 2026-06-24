@@ -80,7 +80,7 @@ void main(){
   float warp = fbm(sp * 1.4 + vec3(t));
   float disp = fbm(sp * 2.2 + warp + vec3(-t * 0.6));
 
-  float amp = mix(0.12, 0.30, uIntensity) + uAudio * 0.35;
+  float amp = mix(0.16, 0.42, uIntensity) + uAudio * 0.55;
   vec3 displaced = position + normal * disp * amp;
 
   vDisp = disp;
@@ -107,9 +107,9 @@ void main(){
   vec3 core = mix(uColorA * 0.10, uColorB * 0.28, smoothstep(-0.6, 0.7, vDisp));
   vec3 rim  = mix(uColorA, uColorB, smoothstep(-0.5, 0.5, vDisp));
 
-  vec3 col = core + rim * fres * 1.4;
-  col += uAudio * 0.25 * uColorB;        // gentle pulse with the music
-  col += pow(fres, 3.5) * 0.3 * uColorB; // soft brand-colored rim (no white blowout)
+  vec3 col = core + rim * fres * 1.9;
+  col += uAudio * 0.45 * uColorB;       // pulse with the music
+  col += pow(fres, 4.0) * 0.6;          // hot specular edge for bloom to catch
 
   gl_FragColor = vec4(col, 1.0);
 }

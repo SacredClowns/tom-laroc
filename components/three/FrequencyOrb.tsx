@@ -49,13 +49,10 @@ export default function FrequencyOrb({ detail = 24 }: { detail?: number }) {
 
     // ease audio energy toward target, with a living pulse while playing
     audioState.level += (audioState.target - audioState.level) * Math.min(1, delta * 2.5);
-    const t = state.clock.elapsedTime;
     const pulse = audioState.playing
-      ? 0.5 + 0.5 * Math.sin(t * 6.0)
+      ? 0.5 + 0.5 * Math.sin(state.clock.elapsedTime * 6.0)
       : 1.0;
-    // calm, slow-breathing baseline; energy only really rises with playback
-    const baseline = 0.06 + 0.03 * Math.sin(t * 1.0);
-    const energy = baseline + audioState.level * (0.4 + 0.3 * pulse);
+    const energy = audioState.level * (0.55 + 0.45 * pulse);
 
     const m = matRef.current;
     if (m) {
@@ -69,8 +66,8 @@ export default function FrequencyOrb({ detail = 24 }: { detail?: number }) {
     }
 
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.05;
-      groupRef.current.rotation.x = Math.sin(t * 0.1) * 0.1;
+      groupRef.current.rotation.y += delta * 0.06;
+      groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.1) * 0.12;
     }
   });
 

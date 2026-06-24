@@ -64,9 +64,9 @@ export default function Scene() {
 
       <EffectComposer>
         <Bloom
-          intensity={0.85}
-          luminanceThreshold={0.3}
-          luminanceSmoothing={0.7}
+          intensity={1.25}
+          luminanceThreshold={0.18}
+          luminanceSmoothing={0.5}
           mipmapBlur
         />
         <ChromaticAberration
