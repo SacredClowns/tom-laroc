@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import ConsultForm from "@/components/ConsultForm";
+import Vinyl from "@/components/Vinyl";
 import { PACKAGES, CUSTOM } from "@/lib/packages";
+
+// one record color per service card
+const VINYL_COLORS = ["#8b6cff", "#ff6a3d", "#6c8cff", "#ffb37e", "#5fd0c0", "#ff6ab0"];
 
 export const metadata: Metadata = {
   title: "AI Strategy & Creative Direction in Miami",
@@ -132,19 +136,14 @@ export default function WorkWithTomPage() {
           show. Engagements are shaped around what you actually need.
         </p>
         <div className="mt-14 grid gap-px md:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s) => (
+          {SERVICES.map((s, i) => (
             <div
               key={s.n}
               className="border p-8"
               style={{ borderColor: "var(--accent-soft)" }}
             >
-              <p
-                className="text-xs uppercase tracking-[0.2em]"
-                style={{ color: "var(--accent)" }}
-              >
-                {s.n}
-              </p>
-              <h3 className="display mt-3 text-2xl">{s.title}</h3>
+              <Vinyl color={VINYL_COLORS[i % VINYL_COLORS.length]} />
+              <h3 className="display mt-5 text-2xl">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
                 {s.body}
               </p>
