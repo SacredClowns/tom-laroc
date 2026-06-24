@@ -24,9 +24,9 @@ export default function Footer() {
             <span style={{ color: "var(--accent)" }}>Explore</span>
             {[
               ["Work", "/work"],
+              ["Archive", "/archive"],
               ["Footprint", "/live"],
               ["Dispatches", "/dispatches"],
-              ["About", "/artist"],
             ].map(([l, h]) => (
               <Link key={h} href={h} style={{ color: "var(--muted)" }}>
                 {l}

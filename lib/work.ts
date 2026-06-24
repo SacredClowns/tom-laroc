@@ -8,6 +8,7 @@ export type Work = {
   category: string;
   year: string;
   blurb: string;
+  href?: string; // optional internal link (e.g. Sound → the Archive)
 };
 
 export const WORK: Work[] = [
@@ -81,6 +82,7 @@ export const WORK: Work[] = [
     category: "Music · DJ",
     year: "40 years",
     blurb:
-      "Where the taste was trained. A 40-year discography — mixes and rooms read in real time. The original prompt engineering.",
+      "Where the taste was trained. A 40-year discography — mixes and rooms read in real time. The original prompt engineering. Hear the surviving archive →",
+    href: "/archive",
   },
 ];

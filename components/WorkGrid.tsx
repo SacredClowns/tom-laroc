@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { WORK } from "@/lib/work";
 
 export default function WorkGrid() {
@@ -57,7 +58,15 @@ export default function WorkGrid() {
                 {w.year}
               </span>
             </div>
-            <h3 className="display mt-2 text-2xl">{w.title}</h3>
+            <h3 className="display mt-2 text-2xl">
+              {w.href ? (
+                <Link href={w.href} className="hover:opacity-70">
+                  {w.title}
+                </Link>
+              ) : (
+                w.title
+              )}
+            </h3>
             <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
               {w.blurb}
             </p>
