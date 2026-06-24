@@ -25,8 +25,14 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Public chrome doesn't belong in the back office or bespoke pages.
-  if (pathname?.startsWith("/admin") || pathname?.startsWith("/for")) return null;
+  // Public chrome doesn't belong in the back office, bespoke pages,
+  // or the full-screen visualizer.
+  if (
+    pathname?.startsWith("/admin") ||
+    pathname?.startsWith("/for") ||
+    pathname?.startsWith("/visualizer")
+  )
+    return null;
 
   return (
     <header

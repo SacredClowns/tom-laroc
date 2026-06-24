@@ -40,3 +40,16 @@ export function subscribe(l: (playing: boolean) => void) {
 export function pushAnalyserRMS(rms: number) {
   audioState.target = Math.min(1, rms * 1.8);
 }
+
+// Shared "energy" the visualizers read each frame. Mixcloud audio can't be
+// analyzed (cross-origin/DRM), so when a mix is playing we synthesize a
+// convincing beat from layered oscillators scaled by the play state.
+export function vizEnergy(level: number, t: number, playing: boolean) {
+  const baseline = 0.12 + 0.06 * Math.sin(t * 1.4);
+  if (!playing && level < 0.02) return baseline;
+  const beat =
+    0.55 +
+    0.45 * Math.sin(t * 6.3) * Math.sin(t * 2.1) +
+    0.2 * Math.sin(t * 11.0);
+  return baseline + level * (0.45 + 0.75 * Math.max(0, beat));
+}

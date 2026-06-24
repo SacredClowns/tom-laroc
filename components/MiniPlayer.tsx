@@ -20,7 +20,12 @@ export default function MiniPlayer() {
   // keep local UI in sync with the shared audio singleton (drives the orb)
   useEffect(() => subscribe(setPlaying), []);
 
-  if (pathname?.startsWith("/admin") || pathname?.startsWith("/for")) return null;
+  if (
+    pathname?.startsWith("/admin") ||
+    pathname?.startsWith("/for") ||
+    pathname?.startsWith("/visualizer")
+  )
+    return null;
 
   return (
     <AnimatePresence>

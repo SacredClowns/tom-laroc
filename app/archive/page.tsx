@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Footer from "@/components/Footer";
 import MixcloudArchive from "@/components/MixcloudArchive";
 import { getMixes } from "@/lib/mixcloud";
@@ -30,6 +31,14 @@ export default async function ArchivePage() {
           trained. The original recordings were lost to a house fire. What
           survived lives here now, and isn&apos;t going anywhere. Press play.
         </p>
+
+        <Link
+          href="/visualizer"
+          className="mt-8 inline-block rounded-full px-7 py-4 text-xs uppercase tracking-[0.2em]"
+          style={{ backgroundColor: "var(--accent)", color: "var(--bg)" }}
+        >
+          Play it in the Visualizer →
+        </Link>
 
         <div className="mt-14">
           <MixcloudArchive mixes={mixes} />
