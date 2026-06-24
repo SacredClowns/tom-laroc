@@ -4,6 +4,7 @@ import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { usePhase, type Phase } from "@/lib/phase";
+import { audioState } from "@/lib/audio";
 
 const PHASE_TINT: Record<Phase, string> = {
   warmup: "#6c8cff",
@@ -33,13 +34,18 @@ export default function Particles({ count = 1400 }: { count?: number }) {
   }, [count]);
 
   useFrame((state, delta) => {
+    const energy = audioState.level;
     if (ref.current) {
-      ref.current.rotation.y += delta * 0.02;
-      ref.current.rotation.z -= delta * 0.008;
+      ref.current.rotation.y += delta * (0.04 + energy * 0.25);
+      ref.current.rotation.z -= delta * 0.012;
     }
     if (matRef.current) {
       tint.set(PHASE_TINT[phase]);
       matRef.current.color.lerp(tint, Math.min(1, delta * 1.5));
+      // twinkle + flare with the energy
+      matRef.current.opacity =
+        0.6 + 0.25 * Math.sin(state.clock.elapsedTime * 3) + energy * 0.3;
+      matRef.current.size = 0.018 + energy * 0.02;
     }
   });
 

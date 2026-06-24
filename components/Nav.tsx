@@ -47,12 +47,12 @@ export default function Nav() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-xs uppercase tracking-[0.2em] transition-opacity hover:opacity-100"
+              className="whitespace-nowrap text-xs uppercase tracking-[0.18em] transition-opacity hover:opacity-100"
               style={{ color: "var(--muted)" }}
             >
               {l.label}
@@ -60,7 +60,7 @@ export default function Nav() {
           ))}
           <Link
             href="/inner-circle"
-            className="rounded-full border px-4 py-2 text-xs uppercase tracking-[0.2em] transition-colors"
+            className="whitespace-nowrap rounded-full border px-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors"
             style={{ borderColor: "var(--accent)", color: "var(--accent)" }}
           >
             Inner Circle
@@ -69,7 +69,7 @@ export default function Nav() {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="text-xs uppercase tracking-[0.2em] md:hidden"
+          className="text-xs uppercase tracking-[0.2em] lg:hidden"
           style={{ color: "var(--fg)" }}
           aria-label="Toggle menu"
         >
@@ -79,7 +79,7 @@ export default function Nav() {
 
       {open && (
         <div
-          className="flex flex-col gap-4 px-6 pb-6 md:hidden"
+          className="flex flex-col gap-4 px-6 pb-6 lg:hidden"
           style={{ backgroundColor: "var(--bg)" }}
         >
           {[...LINKS, { href: "/inner-circle", label: "Inner Circle" }].map((l) => (

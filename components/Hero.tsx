@@ -4,9 +4,26 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { usePhase } from "@/lib/phase";
 
-// WebGL is client-only — never SSR the Three.js canvas.
+// WebGL is client-only — never SSR the Three.js canvas. While the chunk
+// loads, show a pulsing orb-glow so the hero is never blank for a beat.
 const Scene = dynamic(() => import("@/components/three/Scene"), {
   ssr: false,
+  loading: () => (
+    <div
+      className="absolute inset-0 flex items-center justify-center"
+      aria-hidden
+    >
+      <div
+        className="h-64 w-64 rounded-full animate-breathe"
+        style={{
+          background:
+            "radial-gradient(circle, var(--accent) 0%, transparent 65%)",
+          filter: "blur(24px)",
+          opacity: 0.6,
+        }}
+      />
+    </div>
+  ),
 });
 
 export default function Hero() {
