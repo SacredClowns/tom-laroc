@@ -53,10 +53,9 @@ export default function FrequencyOrb({ detail = 24 }: { detail?: number }) {
     const pulse = audioState.playing
       ? 0.5 + 0.5 * Math.sin(t * 6.0)
       : 1.0;
-    // alive even before anyone presses play: baseline shimmer + periodic bursts
-    const baseline = 0.14 + 0.07 * Math.sin(t * 1.6);
-    const burst = Math.pow(Math.max(0, Math.sin(t * 0.5)), 10) * 0.6;
-    const energy = baseline + burst + audioState.level * (0.6 + 0.4 * pulse);
+    // calm, slow-breathing baseline; energy only really rises with playback
+    const baseline = 0.06 + 0.03 * Math.sin(t * 1.0);
+    const energy = baseline + audioState.level * (0.4 + 0.3 * pulse);
 
     const m = matRef.current;
     if (m) {
@@ -70,8 +69,8 @@ export default function FrequencyOrb({ detail = 24 }: { detail?: number }) {
     }
 
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * (0.12 + energy * 0.5);
-      groupRef.current.rotation.x = Math.sin(t * 0.15) * 0.16;
+      groupRef.current.rotation.y += delta * 0.05;
+      groupRef.current.rotation.x = Math.sin(t * 0.1) * 0.1;
     }
   });
 

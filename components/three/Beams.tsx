@@ -48,7 +48,7 @@ export default function Beams({ count = 9 }: { count?: number }) {
     }
     tint.set(PHASE_TINT[phase]);
     material.color.lerp(tint, Math.min(1, delta * 1.5));
-    material.opacity = 0.1 + energy * 0.4;
+    material.opacity = 0.03 + energy * 0.14;
   });
 
   return (

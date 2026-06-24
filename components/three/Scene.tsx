@@ -58,7 +58,7 @@ export default function Scene() {
       <ambientLight intensity={0.4} />
       <pointLight position={[4, 3, 5]} intensity={20} />
 
-      <Beams count={small ? 7 : 10} />
+      <Beams count={small ? 5 : 7} />
       <FrequencyOrb detail={detail} />
       <Particles count={particleCount} />
 
@@ -66,9 +66,9 @@ export default function Scene() {
 
       <EffectComposer>
         <Bloom
-          intensity={1.9}
-          luminanceThreshold={0.12}
-          luminanceSmoothing={0.6}
+          intensity={0.85}
+          luminanceThreshold={0.3}
+          luminanceSmoothing={0.7}
           mipmapBlur
         />
         <ChromaticAberration
