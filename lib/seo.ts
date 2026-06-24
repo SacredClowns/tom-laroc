@@ -19,6 +19,7 @@ export const SITE = {
   sameAs: [
     "https://x.com/TomLaroc",
     "https://www.instagram.com/tomlaroc/",
+    "https://www.youtube.com/@HIFIAISound",
     "https://www.mixcloud.com/tomlaroc/",
   ],
   keywords: [

@@ -24,9 +24,9 @@ export default function Footer() {
             <span style={{ color: "var(--accent)" }}>Explore</span>
             {[
               ["Work", "/work"],
+              ["Screening Room", "/screening-room"],
               ["Archive", "/archive"],
               ["Footprint", "/live"],
-              ["Dispatches", "/dispatches"],
             ].map(([l, h]) => (
               <Link key={h} href={h} style={{ color: "var(--muted)" }}>
                 {l}
@@ -37,9 +37,9 @@ export default function Footer() {
             <span style={{ color: "var(--accent)" }}>Elsewhere</span>
             {[
               ["Instagram", "https://www.instagram.com/tomlaroc/"],
+              ["YouTube", "https://www.youtube.com/@HIFIAISound"],
               ["Mixcloud", "https://www.mixcloud.com/tomlaroc/"],
               ["X / @TomLaroc", "https://x.com/TomLaroc"],
-              ["Work With Tom", "/bookings"],
             ].map(([l, h]) => (
               <a key={h} href={h} style={{ color: "var(--muted)" }}>
                 {l}
