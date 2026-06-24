@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* --font-display / --font-sans are injected by next/font on <html> */
+
+  /* Default phase: Warm-Up (deep blue-black) */
+  --bg: #07070b;
+  --bg-soft: #0d1018;
+  --fg: #f4f1ea;
+  --muted: #8a8f9c;
+  --accent: #8b6cff;
+  --accent-soft: rgba(139, 108, 255, 0.18);
+  --glow: rgba(139, 108, 255, 0.35);
+  --grain-opacity: 0.05;
+}
+
+/* ---- The Arc of the Night: each phase re-themes the whole page ---- */
+[data-phase="warmup"] {
+  --bg: #07070b;
+  --bg-soft: #0d1018;
+  --fg: #eef1f7;
+  --muted: #7f8694;
+  --accent: #6c8cff;
+  --accent-soft: rgba(108, 140, 255, 0.16);
+  --glow: rgba(108, 140, 255, 0.3);
+}
+[data-phase="peak"] {
+  --bg: #0c0608;
+  --bg-soft: #1a0a0c;
+  --fg: #fff3ec;
+  --muted: #b08a7e;
+  --accent: #ff6a3d;
+  --accent-soft: rgba(255, 106, 61, 0.18);
+  --glow: rgba(255, 106, 61, 0.45);
+}
+[data-phase="afterhours"] {
+  --bg: #06060f;
+  --bg-soft: #100b22;
+  --fg: #ece8ff;
+  --muted: #8079a8;
+  --accent: #8b6cff;
+  --accent-soft: rgba(139, 108, 255, 0.2);
+  --glow: rgba(139, 108, 255, 0.4);
+}
+[data-phase="sunrise"] {
+  --bg: #120a0a;
+  --bg-soft: #241310;
+  --fg: #fff6ee;
+  --muted: #c2998a;
+  --accent: #ffb37e;
+  --accent-soft: rgba(255, 179, 126, 0.2);
+  --glow: rgba(255, 179, 126, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 1.2s ease, color 1.2s ease;
+}
+
+.display {
+  font-family: var(--font-display), Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Film grain overlay */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 60;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

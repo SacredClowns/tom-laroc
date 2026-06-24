@@ -1,0 +1,55 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // Phase-driven colors are CSS vars (see globals.css).
+        // These are static brand tokens.
+        ink: "#07070b",
+        haze: "#0d0e15",
+        bone: "#f4f1ea",
+        ember: "#ff6a3d",
+        ultraviolet: "#8b6cff",
+        dawn: "#ffb37e",
+      },
+      fontFamily: {
+        display: ["var(--font-display)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+      },
+      letterSpacing: {
+        tightest: "-0.04em",
+        widest2: "0.4em",
+      },
+      keyframes: {
+        breathe: {
+          "0%, 100%": { transform: "scale(1)", opacity: "0.85" },
+          "50%": { transform: "scale(1.06)", opacity: "1" },
+        },
+        drift: {
+          "0%": { transform: "translateY(0) translateX(0)" },
+          "100%": { transform: "translateY(-40px) translateX(20px)" },
+        },
+        grain: {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "20%": { transform: "translate(-5%, 5%)" },
+          "40%": { transform: "translate(-10%, -5%)" },
+          "60%": { transform: "translate(5%, 10%)" },
+          "80%": { transform: "translate(10%, -10%)" },
+        },
+      },
+      animation: {
+        breathe: "breathe 7s ease-in-out infinite",
+        drift: "drift 12s ease-in-out infinite alternate",
+        grain: "grain 1.2s steps(6) infinite",
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
