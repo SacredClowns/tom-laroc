@@ -24,7 +24,7 @@ const SERVICES = [
   {
     n: "03",
     title: "Brand & Aesthetic Direction",
-    body: "Taste as a service. Keep AI output unmistakably on-brand instead of generic. Thirty years of a trained eye, applied.",
+    body: "Taste as a service. Keep AI output unmistakably on-brand instead of generic. Forty years of a trained eye, applied.",
   },
   {
     n: "04",
@@ -106,8 +106,8 @@ export default function WorkWithTomPage() {
       >
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px md:grid-cols-4">
           {[
-            ["Artist first", "a keen eye, serious taste"],
-            ["Years early", "bridging design & AI"],
+            ["40-yr legacy", "DJ → designer → AI"],
+            ["Daily show", "co-hosts #AIArtToday"],
             ["Taught 1000s", "hands-on, jargon-free"],
             ["Miami-based", "local reach + worldwide remote"],
           ].map(([big, small]) => (
@@ -124,9 +124,12 @@ export default function WorkWithTomPage() {
       {/* Services */}
       <section id="services" className="mx-auto max-w-6xl px-6 py-28">
         <h2 className="display text-3xl md:text-5xl">What Tom does.</h2>
-        <p className="mt-4 max-w-xl text-sm" style={{ color: "var(--muted)" }}>
-          A Renaissance practice — strategy, taste, and execution under one roof.
-          Engagements are shaped around what you actually need.
+        <p className="mt-4 max-w-2xl text-sm" style={{ color: "var(--muted)" }}>
+          A Renaissance practice that bridges high-level generative AI and
+          commercial multimedia production — strategy, taste, and execution under
+          one roof. He consults for agencies (including Boyne &amp; Co.) and
+          co-hosts the daily <span style={{ color: "var(--fg)" }}>#AIArtToday</span>{" "}
+          show. Engagements are shaped around what you actually need.
         </p>
         <div className="mt-14 grid gap-px md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => (
@@ -240,7 +243,7 @@ export default function WorkWithTomPage() {
         <p className="display text-2xl leading-snug md:text-4xl">
           &ldquo;DJing was always real-time prompt engineering — temperature,
           constraints, intent, reading the room. Zero tolerance for
-          hallucinations. I&apos;ve run that loop for thirty years. The tools
+          hallucinations. I&apos;ve run that loop for forty years. The tools
           finally caught up.&rdquo;
         </p>
         <p

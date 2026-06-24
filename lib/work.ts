@@ -20,6 +20,22 @@ export const WORK: Work[] = [
       "Directed and produced. A reimagining of the New Order classic with Peter Hook — generative visuals cut to a rebuilt bassline.",
   },
   {
+    slug: "gnarls-barkley",
+    title: "Gnarls Barkley",
+    category: "Music Visuals",
+    year: "Feature",
+    blurb:
+      "High-profile music visuals — generative media built around the track, not bolted on. Where the eye for music meets AI.",
+  },
+  {
+    slug: "multi-model-pipeline",
+    title: "The Multi-Model Pipeline",
+    category: "AI Direction",
+    year: "Signature",
+    blurb:
+      "Stringing ~10 leading tools — video generators like Sora, image models like Ideogram, specialized audio engines — layered with traditional animation, illustration, and human direction. Premium, never generic.",
+  },
+  {
     slug: "digital-isolation",
     title: "Golden Age of Digital Isolation",
     category: "Generative Art",
@@ -55,16 +71,16 @@ export const WORK: Work[] = [
     slug: "the-archive",
     title: "The Archive",
     category: "Curation",
-    year: "1994 — now",
+    year: "1985 — now",
     blurb:
-      "Three decades of music and culture, preserved and recontextualized — including rare material like the 2005 mixtape sessions.",
+      "Four decades of music and culture, preserved and recontextualized — including rare material like the 2005 mixtape sessions.",
   },
   {
     slug: "sound",
     title: "Sound",
     category: "Music · DJ",
-    year: "30 years",
+    year: "40 years",
     blurb:
-      "Where the taste was trained. Decades of mixes and rooms read in real time — the original prompt engineering.",
+      "Where the taste was trained. A 40-year discography — mixes and rooms read in real time. The original prompt engineering.",
   },
 ];

@@ -17,15 +17,25 @@ export default function ArtistPage() {
       <div className="mt-16 space-y-6 text-lg" style={{ color: "var(--fg)" }}>
         <p>
           The eye came first — composition, type, color, the discipline of
-          design. Then three decades across music and culture (Bronx roots,
-          Sleeping Bag Records, the Erick Sermon era, a friendship with Jam
-          Master Jay) that taught him how to read a room and hold a feeling.
+          design. Then a <strong>40-year DJ discography</strong> across music and
+          culture (Bronx roots, Sleeping Bag Records, the Erick Sermon era, a
+          friendship with Jam Master Jay) that taught him how to read a room and
+          hold a feeling.
         </p>
         <p>
-          We&apos;ve been working at the edge of design and AI for years —
-          generative art, AI animation, immersive work — and taught thousands of
-          people how to use these tools without losing taste. That&apos;s the
-          whole point: AI that never looks like AI.
+          Today he bridges high-level generative AI and commercial multimedia
+          production: AI animation, generative art, high-profile music visuals
+          (including work with Gnarls Barkley), and immersive pieces. His
+          signature is the <strong>multi-model pipeline</strong> — stringing
+          roughly ten leading tools (video generators like Sora, image models
+          like Ideogram, specialized audio engines) with traditional animation,
+          illustration, and human direction. Premium, never generic.
+        </p>
+        <p>
+          He co-hosts the daily <strong>#AIArtToday</strong> show, consults for
+          agencies (including Boyne &amp; Co.), and has taught thousands how to
+          use these tools without losing taste. That&apos;s the whole point: AI
+          that never looks like AI.
         </p>
         <p>
           A deliberate, high-fidelity life: the smartphone retired, the archive

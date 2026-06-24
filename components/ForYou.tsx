@@ -78,7 +78,7 @@ export default function ForYou({ name, company, challenge, focus }: Props) {
           {focusLine
             ? `Here's the short version: ${focusLine} is exactly where I work — turning AI from noise into a system that actually moves the needle. `
             : "Here's the short version: I turn AI from noise into a system that actually moves the needle. "}
-          Thirty years of taste and craft, pointed at your problem. Let&apos;s talk
+          Forty years of taste and craft, pointed at your problem. Let&apos;s talk
           about how that looks for you.
         </motion.p>
 

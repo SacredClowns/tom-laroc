@@ -22,7 +22,7 @@ export default function SignalChain() {
         The Signal Chain
       </p>
       <h2 className="display max-w-3xl text-3xl leading-tight md:text-5xl">
-        I&apos;ve been prompt engineering for thirty years. The machine just
+        I&apos;ve been prompt engineering for forty years. The machine just
         showed up late.
       </h2>
 
@@ -57,7 +57,7 @@ export default function SignalChain() {
         className="mt-12 display text-2xl md:text-3xl"
         style={{ color: "var(--accent)" }}
       >
-        Thirty years of training data. One human in the loop.
+        Forty years of training data. One human in the loop.
       </p>
     </section>
   );

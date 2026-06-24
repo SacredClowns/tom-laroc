@@ -120,16 +120,16 @@ const RENDERERS: Record<TemplateId, (c: Ctx) => RenderedEmail> = {
     return {
       subject: `${f} — AI is just reading the room`,
       html: shell({
-        preheader: `Thirty years of it, actually.`,
+        preheader: `Forty years of it, actually.`,
         ctaLabel: "Read it",
         link,
         bodyHtml:
           p(`Hi ${f},`) +
-          p(`Most people treat AI like a slot machine. I treat it like a DJ set — temperature, constraints, intent, reading the room. I've run that loop for thirty years; the tools just caught up.`) +
+          p(`Most people treat AI like a slot machine. I treat it like a DJ set — temperature, constraints, intent, reading the room. I've run that loop for forty years; the tools just caught up.`) +
           p(`I wrote down how that applies to what you're working on. It's a page made for you — give it a look.`) +
           p(`— Tom`),
       }),
-      text: `Hi ${f},\n\nAI is just reading the room — I've done it for thirty years. Here's how it applies to you: ${link}\n\n— Tom`,
+      text: `Hi ${f},\n\nAI is just reading the room — I've done it for forty years. Here's how it applies to you: ${link}\n\n— Tom`,
     };
   },
 };

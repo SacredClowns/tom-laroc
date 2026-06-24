@@ -18,6 +18,39 @@ export type Dispatch = {
 
 export const DISPATCHES: Dispatch[] = [
   {
+    slug: "the-multi-model-pipeline",
+    title: "Ten Models, One Vision: The Multi-Model Pipeline",
+    excerpt:
+      "How I string ~10 AI tools — Sora, Ideogram, specialized audio — with traditional craft and human direction to make work that looks premium, never generic.",
+    date: "2026-06-18",
+    readMins: 5,
+    tags: ["AI video", "Generative", "Method"],
+    body: [
+      {
+        type: "p",
+        text: "The single-tool, single-prompt era is over. One model gives you one model's accent — and everybody can hear it. The work that reads as premium comes from a pipeline: the right tool for each shot, stitched together by a human who knows what they're reaching for.",
+      },
+      { type: "h2", text: "The chain, not the prompt" },
+      {
+        type: "p",
+        text: "A finished piece for me routinely passes through ten or so tools — a video generator like Sora for motion, an image model like Ideogram for stills and type, specialized audio engines for sound — and then back through traditional animation, illustration, and edit. No single model carries the whole thing. Each does the one job it's best at.",
+      },
+      {
+        type: "quote",
+        text: "One model gives you one model's accent. A pipeline gives you yours.",
+      },
+      { type: "h2", text: "Human direction is the difference" },
+      {
+        type: "p",
+        text: "Between every step is a decision. What to keep, what to cut, where to push, where to hold. That's forty years of taste doing the work the models can't — bridging high-level generative AI and real, commercial multimedia production.",
+      },
+      {
+        type: "p",
+        text: "If your team is generating a lot and shipping little — or shipping things that look like everyone else's — a pipeline is usually the fix. That's the kind of system I build with clients.",
+      },
+    ],
+  },
+  {
     slug: "ai-that-never-looks-like-ai",
     title: "AI That Never Looks Like AI",
     excerpt:
@@ -58,7 +91,7 @@ export const DISPATCHES: Dispatch[] = [
     slug: "djing-was-always-prompt-engineering",
     title: "DJing Was Always Prompt Engineering",
     excerpt:
-      "Temperature, constraints, intent, reading the room. I ran that loop for thirty years before the tools caught up.",
+      "Temperature, constraints, intent, reading the room. I ran that loop for forty years before the tools caught up.",
     date: "2026-05-22",
     readMins: 3,
     tags: ["AI strategy", "Craft"],
@@ -74,7 +107,7 @@ export const DISPATCHES: Dispatch[] = [
       },
       {
         type: "quote",
-        text: "The floor is the reward signal. I've been doing reinforcement learning for thirty years; it just didn't have a citation.",
+        text: "The floor is the reward signal. I've been doing reinforcement learning for forty years; it just didn't have a citation.",
       },
       {
         type: "p",
