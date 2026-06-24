@@ -10,7 +10,8 @@ export function middleware(req: NextRequest) {
   }
 
   const token = req.cookies.get(ADMIN_COOKIE)?.value;
-  if (token && token === ADMIN_TOKEN) {
+  // ADMIN_TOKEN must be configured (non-empty) AND match — otherwise locked.
+  if (ADMIN_TOKEN && token && token === ADMIN_TOKEN) {
     return NextResponse.next();
   }
 

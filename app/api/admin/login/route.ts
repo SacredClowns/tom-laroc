@@ -1,7 +1,14 @@
 import { NextResponse } from "next/server";
-import { ADMIN_COOKIE, ADMIN_PASSWORD, ADMIN_TOKEN } from "@/lib/admin";
+import { ADMIN_COOKIE, ADMIN_CONFIGURED, ADMIN_PASSWORD, ADMIN_TOKEN } from "@/lib/admin";
 
 export async function POST(req: Request) {
+  if (!ADMIN_CONFIGURED) {
+    return NextResponse.json(
+      { ok: false, error: "Admin not configured. Set ADMIN_PASSWORD and ADMIN_TOKEN." },
+      { status: 503 }
+    );
+  }
+
   let password = "";
   try {
     const body = await req.json();

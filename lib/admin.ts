@@ -3,5 +3,8 @@
 // ADMIN_TOKEN: the opaque value stored in the session cookie.
 
 export const ADMIN_COOKIE = "tl_admin";
-export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "tomhq";
-export const ADMIN_TOKEN = process.env.ADMIN_TOKEN || "tl-admin-session-change-me";
+// No insecure defaults — the repo is public. Admin is LOCKED until both
+// ADMIN_PASSWORD and ADMIN_TOKEN are set in the environment (e.g. Vercel).
+export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
+export const ADMIN_TOKEN = process.env.ADMIN_TOKEN || "";
+export const ADMIN_CONFIGURED = Boolean(ADMIN_PASSWORD && ADMIN_TOKEN);
