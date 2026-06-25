@@ -125,6 +125,10 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
   const [sel, setSel] = useState<string | null>(null);
   const [glyph, setGlyph] = useState<Glyph>("leaf");
   const [chrome, setChrome] = useState(true); // show UI (controls + title)
+  const [fs, setFs] = useState(false); // fullscreen
+  const [auto, setAuto] = useState(false); // ambient auto-cycle
+  const rootRef = useRef<HTMLDivElement>(null);
+  const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const prismRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -154,6 +158,33 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
     }, 110);
   }
   useEffect(() => () => clearPrism(), []);
+
+  // fullscreen sync
+  useEffect(() => {
+    const h = () => setFs(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", h);
+    return () => document.removeEventListener("fullscreenchange", h);
+  }, []);
+  function toggleFs() {
+    if (typeof document === "undefined") return;
+    if (document.fullscreenElement) document.exitFullscreen?.();
+    else rootRef.current?.requestFullscreen?.();
+  }
+
+  // ambient auto-cycle: rotate through the visualizers hands-free
+  useEffect(() => {
+    if (!auto) return;
+    autoRef.current = setInterval(() => {
+      setMode((m) => {
+        const i = MODES.findIndex((x) => x.id === m);
+        return MODES[(i + 1) % MODES.length].id;
+      });
+    }, 16000);
+    return () => {
+      if (autoRef.current) clearInterval(autoRef.current);
+      autoRef.current = null;
+    };
+  }, [auto]);
 
   const hasMixes = mixes.length > 0;
   const current = hasMixes ? mixes[idx] : null;
@@ -203,7 +234,7 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
   }
 
   return (
-    <div className="relative h-screen w-full overflow-hidden" style={{ backgroundColor: "var(--bg)" }}>
+    <div ref={rootRef} className="relative h-screen w-full overflow-hidden" style={{ backgroundColor: "var(--bg)" }}>
       {mounted && (
         <Canvas
           className="!absolute inset-0"
@@ -231,34 +262,66 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
         <span className="text-[11px] uppercase font-medium tracking-[0.2em]">Home</span>
       </Link>
 
-      {/* immerse toggle — hide all UI to just watch the visuals */}
-      <button
-        onClick={() => setChrome((c) => !c)}
-        title={chrome ? "Hide controls" : "Show controls"}
-        aria-label={chrome ? "Hide controls" : "Show controls"}
-        className="absolute right-6 top-24 z-30 flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-xl transition-opacity hover:opacity-100"
-        style={{
-          borderColor: "var(--accent-soft)",
-          backgroundColor: "color-mix(in srgb, var(--bg) 55%, transparent)",
-          color: "var(--fg)",
-          opacity: chrome ? 0.65 : 0.35,
-        }}
-      >
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6">
-          {chrome ? (
-            <>
-              <path d="M2 12 C5 6 19 6 22 12 C19 18 5 18 2 12 Z" />
-              <circle cx="12" cy="12" r="3" />
-              <line x1="3" y1="3" x2="21" y2="21" />
-            </>
-          ) : (
-            <>
-              <path d="M2 12 C5 6 19 6 22 12 C19 18 5 18 2 12 Z" />
-              <circle cx="12" cy="12" r="3" />
-            </>
-          )}
-        </svg>
-      </button>
+      {/* top-right cluster: ambient auto-cycle · fullscreen · immerse */}
+      <div className="absolute right-6 top-24 z-30 flex items-center gap-2">
+        <button
+          onClick={() => setAuto((a) => !a)}
+          title="Ambient auto-cycle"
+          aria-label="Ambient auto-cycle"
+          className="flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-xl transition-opacity hover:opacity-100"
+          style={{
+            borderColor: auto ? "var(--accent)" : "var(--accent-soft)",
+            backgroundColor: "color-mix(in srgb, var(--bg) 55%, transparent)",
+            color: auto ? "var(--accent)" : "var(--fg)",
+            opacity: auto ? 1 : 0.65,
+          }}
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <path d="M21 12a9 9 0 1 1-2.64-6.36" />
+            <path d="M21 3v5h-5" />
+          </svg>
+        </button>
+
+        <button
+          onClick={toggleFs}
+          title={fs ? "Exit fullscreen" : "Fullscreen"}
+          aria-label="Fullscreen"
+          className="flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-xl transition-opacity hover:opacity-100"
+          style={{
+            borderColor: "var(--accent-soft)",
+            backgroundColor: "color-mix(in srgb, var(--bg) 55%, transparent)",
+            color: "var(--fg)",
+            opacity: 0.65,
+          }}
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6">
+            {fs ? (
+              <path d="M9 4H5v4M15 4h4v4M9 20H5v-4M15 20h4v-4" />
+            ) : (
+              <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+            )}
+          </svg>
+        </button>
+
+        <button
+          onClick={() => setChrome((c) => !c)}
+          title={chrome ? "Hide controls" : "Show controls"}
+          aria-label={chrome ? "Hide controls" : "Show controls"}
+          className="flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-xl transition-opacity hover:opacity-100"
+          style={{
+            borderColor: "var(--accent-soft)",
+            backgroundColor: "color-mix(in srgb, var(--bg) 55%, transparent)",
+            color: "var(--fg)",
+            opacity: chrome ? 0.65 : 0.35,
+          }}
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <path d="M2 12 C5 6 19 6 22 12 C19 18 5 18 2 12 Z" />
+            <circle cx="12" cy="12" r="3" />
+            {chrome && <line x1="3" y1="3" x2="21" y2="21" />}
+          </svg>
+        </button>
+      </div>
 
       {/* title — now-playing marquee */}
       <div
