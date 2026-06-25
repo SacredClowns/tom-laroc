@@ -11,7 +11,7 @@ export default function AdminLogout() {
         router.replace("/admin/login");
         router.refresh();
       }}
-      className="rounded-full border px-4 py-2 text-xs uppercase tracking-[0.2em]"
+      className="rounded-full border px-4 py-2 text-xs uppercase font-medium tracking-[0.2em]"
       style={{ borderColor: "var(--accent-soft)", color: "var(--muted)" }}
     >
       Sign out

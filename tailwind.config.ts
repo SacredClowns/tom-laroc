@@ -23,7 +23,7 @@ const config: Config = {
       },
       letterSpacing: {
         tightest: "-0.04em",
-        widest2: "0.4em",
+        widest2: "0.2em",
       },
       keyframes: {
         breathe: {
@@ -45,12 +45,17 @@ const config: Config = {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.25" },
+        },
       },
       animation: {
         breathe: "breathe 7s ease-in-out infinite",
         drift: "drift 12s ease-in-out infinite alternate",
         grain: "grain 1.2s steps(6) infinite",
-        marquee: "marquee 30s linear infinite",
+        marquee: "marquee 62s linear infinite",
+        blink: "blink 1.8s ease-in-out infinite",
       },
     },
   },

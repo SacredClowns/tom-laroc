@@ -96,7 +96,7 @@ function Card({ inquiry: i }: { inquiry: Inquiry }) {
       <div className="mt-5 flex gap-3">
         <button
           onClick={() => setComposing((v) => !v)}
-          className="rounded-full px-5 py-2.5 text-xs uppercase tracking-[0.2em]"
+          className="rounded-full px-5 py-2.5 text-xs uppercase font-medium tracking-[0.2em]"
           style={{ backgroundColor: "var(--accent)", color: "var(--bg)" }}
         >
           {composing ? "Close" : "Compose outreach"}
@@ -105,7 +105,7 @@ function Card({ inquiry: i }: { inquiry: Inquiry }) {
           href={`/for/${i.id}`}
           target="_blank"
           rel="noreferrer"
-          className="rounded-full border px-5 py-2.5 text-xs uppercase tracking-[0.2em]"
+          className="rounded-full border px-5 py-2.5 text-xs uppercase font-medium tracking-[0.2em]"
           style={{ borderColor: "var(--accent-soft)", color: "var(--fg)" }}
         >
           View their page ↗
@@ -177,7 +177,7 @@ function Outreach({ inquiry }: { inquiry: Inquiry }) {
     <div className="mt-5 rounded-xl border p-5" style={{ borderColor: "var(--accent-soft)" }}>
       <div className="flex flex-wrap items-end gap-4">
         <label className="flex flex-col gap-2">
-          <span className="text-[10px] uppercase tracking-[0.2em]" style={{ color: "var(--muted)" }}>
+          <span className="text-[10px] uppercase font-medium tracking-[0.2em]" style={{ color: "var(--muted)" }}>
             Template
           </span>
           <select
@@ -201,7 +201,7 @@ function Outreach({ inquiry }: { inquiry: Inquiry }) {
         <button
           onClick={send}
           disabled={loading}
-          className="rounded-full px-6 py-2.5 text-xs uppercase tracking-[0.2em] disabled:opacity-50"
+          className="rounded-full px-6 py-2.5 text-xs uppercase font-medium tracking-[0.2em] disabled:opacity-50"
           style={{ backgroundColor: "var(--accent)", color: "var(--bg)" }}
         >
           {loading ? "…" : "Send via Resend"}
@@ -212,7 +212,7 @@ function Outreach({ inquiry }: { inquiry: Inquiry }) {
               navigator.clipboard?.writeText(preview.html);
               setStatus("HTML copied to clipboard.");
             }}
-            className="rounded-full border px-6 py-2.5 text-xs uppercase tracking-[0.2em]"
+            className="rounded-full border px-6 py-2.5 text-xs uppercase font-medium tracking-[0.2em]"
             style={{ borderColor: "var(--accent-soft)", color: "var(--fg)" }}
           >
             Copy HTML
@@ -252,7 +252,7 @@ function Outreach({ inquiry }: { inquiry: Inquiry }) {
 function Detail({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: "var(--muted)" }}>
+      <p className="text-[10px] uppercase font-medium tracking-[0.2em]" style={{ color: "var(--muted)" }}>
         {label}
       </p>
       <p className="mt-1" style={{ color: "var(--fg)" }}>

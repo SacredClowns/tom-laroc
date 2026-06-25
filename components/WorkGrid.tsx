@@ -10,7 +10,7 @@ export default function WorkGrid() {
       <div className="mb-12 flex items-end justify-between">
         <div>
           <p
-            className="mb-3 text-xs uppercase tracking-widest2"
+            className="mb-3 text-xs uppercase font-medium tracking-widest2"
             style={{ color: "var(--accent)" }}
           >
             Selected Work
@@ -21,7 +21,7 @@ export default function WorkGrid() {
         </div>
         <a
           href="/work"
-          className="hidden text-xs uppercase tracking-[0.2em] hover:opacity-70 md:block"
+          className="hidden text-xs uppercase font-medium tracking-[0.2em] hover:opacity-70 md:block"
           style={{ color: "var(--muted)" }}
         >
           All work →
@@ -49,7 +49,7 @@ export default function WorkGrid() {
             />
             <div className="flex items-center justify-between">
               <span
-                className="text-[10px] uppercase tracking-[0.25em]"
+                className="text-[10px] uppercase font-medium tracking-[0.18em]"
                 style={{ color: "var(--accent)" }}
               >
                 {w.category}

@@ -20,7 +20,7 @@ export default async function ArchivePage() {
   return (
     <main className="min-h-screen pt-36">
       <section className="mx-auto max-w-6xl px-6 pb-24">
-        <p className="mb-4 text-xs uppercase tracking-widest2" style={{ color: "var(--accent)" }}>
+        <p className="mb-4 text-xs uppercase font-medium tracking-widest2" style={{ color: "var(--accent)" }}>
           The Archive
         </p>
         <h1 className="display text-5xl leading-[0.95] tracking-tightest md:text-8xl">
@@ -34,7 +34,7 @@ export default async function ArchivePage() {
 
         <Link
           href="/visualizer"
-          className="mt-8 inline-block rounded-full px-7 py-4 text-xs uppercase tracking-[0.2em]"
+          className="mt-8 inline-block rounded-full px-7 py-4 text-xs uppercase font-medium tracking-[0.2em]"
           style={{ backgroundColor: "var(--accent)", color: "var(--bg)" }}
         >
           Play it in the Visualizer →

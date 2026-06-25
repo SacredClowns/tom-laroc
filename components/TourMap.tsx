@@ -11,7 +11,7 @@ export default function TourMap() {
   return (
     <section id="live" className="mx-auto max-w-6xl px-6 py-32">
       <p
-        className="mb-3 text-xs uppercase tracking-widest2"
+        className="mb-3 text-xs uppercase font-medium tracking-widest2"
         style={{ color: "var(--accent)" }}
       >
         Footprint
@@ -73,7 +73,7 @@ export default function TourMap() {
             }}
           >
             <p
-              className="text-[10px] uppercase tracking-[0.25em]"
+              className="text-[10px] uppercase font-medium tracking-[0.18em]"
               style={{ color: "var(--accent)" }}
             >
               {TOUR[active].home
@@ -107,7 +107,7 @@ export default function TourMap() {
             </div>
             <a
               href="/bookings"
-              className="rounded-full border px-5 py-2 text-xs uppercase tracking-[0.2em]"
+              className="rounded-full border px-5 py-2 text-xs uppercase font-medium tracking-[0.2em]"
               style={{ borderColor: "var(--accent)", color: "var(--accent)" }}
             >
               Enquire

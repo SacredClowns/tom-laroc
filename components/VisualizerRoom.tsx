@@ -155,13 +155,13 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
       {/* title — now-playing marquee */}
       <div className="pointer-events-none absolute left-0 right-0 top-24 z-10">
         <p
-          className="px-6 text-center text-[11px] uppercase tracking-[0.4em]"
+          className="animate-blink px-6 text-center text-[11px] uppercase font-medium tracking-[0.2em]"
           style={{ color: "var(--accent)" }}
         >
           The Visualizer · Now Playing
         </p>
         {current && (
-          <div className="mt-5 opacity-90">
+          <div className="mt-5 opacity-40">
             <Marquee text={current.name} />
           </div>
         )}
@@ -184,7 +184,7 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
                 <button
                   key={m.id}
                   onClick={() => setMode(m.id)}
-                  className="rounded-full border px-4 py-2 text-xs uppercase tracking-[0.2em] transition-all"
+                  className="rounded-full border px-4 py-2 text-xs uppercase font-medium tracking-[0.2em] transition-all"
                   style={{
                     borderColor: on ? "var(--accent)" : "var(--accent-soft)",
                     backgroundColor: on ? "var(--accent)" : "transparent",

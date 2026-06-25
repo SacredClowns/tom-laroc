@@ -9,7 +9,7 @@ export default function InnerCircle() {
   return (
     <section id="inner-circle" className="mx-auto max-w-3xl px-6 py-32 text-center">
       <p
-        className="mb-3 text-xs uppercase tracking-widest2"
+        className="mb-3 text-xs uppercase font-medium tracking-widest2"
         style={{ color: "var(--accent)" }}
       >
         Inner Circle
@@ -52,7 +52,7 @@ export default function InnerCircle() {
           />
           <button
             type="submit"
-            className="rounded-full px-7 py-4 text-xs uppercase tracking-[0.2em]"
+            className="rounded-full px-7 py-4 text-xs uppercase font-medium tracking-[0.2em]"
             style={{ backgroundColor: "var(--accent)", color: "var(--bg)" }}
           >
             Let me in

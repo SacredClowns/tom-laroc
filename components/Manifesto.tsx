@@ -74,7 +74,7 @@ export default function Manifesto() {
       </motion.div>
 
       <p
-        className="mb-12 text-[11px] uppercase tracking-[0.45em]"
+        className="mb-12 text-[11px] uppercase font-medium tracking-[0.45em]"
         style={{ color: "var(--accent)" }}
       >
         01 — The Signal

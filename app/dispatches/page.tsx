@@ -33,7 +33,7 @@ export default function DispatchesPage() {
             style={{ borderTop: "1px solid var(--accent-soft)" }}
           >
             <div
-              className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em]"
+              className="flex items-center gap-3 text-[11px] uppercase font-medium tracking-[0.2em]"
               style={{ color: "var(--muted)" }}
             >
               <span style={{ color: "var(--accent)" }}>{fmt(d.date)}</span>

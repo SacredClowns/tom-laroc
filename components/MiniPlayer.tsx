@@ -194,7 +194,7 @@ export default function MiniPlayer() {
                 {current ? current.name : "Loading Tom's mixes…"}
               </p>
               <p
-                className="text-[10px] uppercase tracking-[0.2em]"
+                className="text-[10px] uppercase font-medium tracking-[0.2em]"
                 style={{ color: "var(--muted)" }}
               >
                 {current ? "Tom Laroc · Mixcloud" : ""}

@@ -49,7 +49,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mb-6 text-xs uppercase tracking-widest2"
+          className="mb-6 text-xs uppercase font-medium tracking-widest2"
           style={{ color: "var(--accent)" }}
         >
           Artist · Designer · The bridge to AI
@@ -79,7 +79,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.1 }}
-          className="pointer-events-auto mt-10 flex items-center gap-5 text-xs uppercase tracking-[0.25em]"
+          className="pointer-events-auto mt-10 flex items-center gap-5 text-xs uppercase font-medium tracking-[0.18em]"
         >
           <a href="#work" style={{ color: "var(--fg)" }} className="hover:opacity-70">
             See the work
@@ -96,7 +96,7 @@ export default function Hero() {
       </div>
 
       <div
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em]"
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase font-medium tracking-[0.18em]"
         style={{ color: "var(--muted)" }}
       >
         {phase === "warmup" ? "Scroll into the night" : "—"}

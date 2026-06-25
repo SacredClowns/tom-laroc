@@ -71,7 +71,7 @@ export default function WorkWithTomPage() {
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-6 pt-40 pb-24">
         <p
-          className="mb-6 text-xs uppercase tracking-widest2"
+          className="mb-6 text-xs uppercase font-medium tracking-widest2"
           style={{ color: "var(--accent)" }}
         >
           Design-led AI · Creative Direction · Teaching
@@ -88,14 +88,14 @@ export default function WorkWithTomPage() {
         <div className="mt-10 flex flex-wrap gap-4">
           <a
             href="#start"
-            className="rounded-full px-8 py-4 text-xs uppercase tracking-[0.2em]"
+            className="rounded-full px-8 py-4 text-xs uppercase font-medium tracking-[0.2em]"
             style={{ backgroundColor: "var(--accent)", color: "var(--bg)" }}
           >
             Tell Tom about your business
           </a>
           <a
             href="#services"
-            className="rounded-full border px-8 py-4 text-xs uppercase tracking-[0.2em]"
+            className="rounded-full border px-8 py-4 text-xs uppercase font-medium tracking-[0.2em]"
             style={{ borderColor: "var(--accent-soft)", color: "var(--fg)" }}
           >
             What he does
@@ -172,7 +172,7 @@ export default function WorkWithTomPage() {
             >
               {p.featured && (
                 <p
-                  className="mb-4 text-[10px] uppercase tracking-[0.3em]"
+                  className="mb-4 text-[10px] uppercase font-medium tracking-[0.18em]"
                   style={{ color: "var(--accent)" }}
                 >
                   Most popular
@@ -200,7 +200,7 @@ export default function WorkWithTomPage() {
               </ul>
               <a
                 href="#start"
-                className="mt-8 rounded-full px-6 py-3 text-center text-xs uppercase tracking-[0.2em]"
+                className="mt-8 rounded-full px-6 py-3 text-center text-xs uppercase font-medium tracking-[0.2em]"
                 style={
                   p.featured
                     ? { backgroundColor: "var(--accent)", color: "var(--bg)" }
@@ -225,7 +225,7 @@ export default function WorkWithTomPage() {
           </div>
           <a
             href="#start"
-            className="shrink-0 rounded-full border px-6 py-3 text-xs uppercase tracking-[0.2em]"
+            className="shrink-0 rounded-full border px-6 py-3 text-xs uppercase font-medium tracking-[0.2em]"
             style={{ borderColor: "var(--accent)", color: "var(--accent)" }}
           >
             Let&apos;s talk
@@ -246,7 +246,7 @@ export default function WorkWithTomPage() {
           finally caught up.&rdquo;
         </p>
         <p
-          className="mt-6 text-xs uppercase tracking-[0.25em]"
+          className="mt-6 text-xs uppercase font-medium tracking-[0.18em]"
           style={{ color: "var(--accent)" }}
         >
           Tom Laroc
@@ -282,7 +282,7 @@ export default function WorkWithTomPage() {
       {/* The intake form */}
       <section id="start" className="mx-auto max-w-3xl px-6 py-28">
         <p
-          className="mb-3 text-xs uppercase tracking-widest2"
+          className="mb-3 text-xs uppercase font-medium tracking-widest2"
           style={{ color: "var(--accent)" }}
         >
           Start here

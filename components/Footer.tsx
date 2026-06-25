@@ -20,7 +20,7 @@ export default function Footer() {
         </div>
 
         <div className="flex gap-16">
-          <div className="flex flex-col gap-3 text-xs uppercase tracking-[0.2em]">
+          <div className="flex flex-col gap-3 text-xs uppercase font-medium tracking-[0.2em]">
             <span style={{ color: "var(--accent)" }}>Explore</span>
             {[
               ["Work", "/work"],
@@ -33,7 +33,7 @@ export default function Footer() {
               </Link>
             ))}
           </div>
-          <div className="flex flex-col gap-3 text-xs uppercase tracking-[0.2em]">
+          <div className="flex flex-col gap-3 text-xs uppercase font-medium tracking-[0.2em]">
             <span style={{ color: "var(--accent)" }}>Elsewhere</span>
             {[
               ["Instagram", "https://www.instagram.com/tomlaroc/"],
@@ -49,7 +49,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <p className="mt-16 text-[10px] uppercase tracking-[0.2em]" style={{ color: "var(--muted)" }}>
+      <p className="mt-16 text-[10px] uppercase font-medium tracking-[0.2em]" style={{ color: "var(--muted)" }}>
         © {new Date().getFullYear()} Tom Laroc — Hi-Fi-Ai. All sources credited.
       </p>
     </footer>

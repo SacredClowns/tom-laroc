@@ -19,7 +19,7 @@ export default async function ScreeningRoomPage() {
   return (
     <main className="min-h-screen pt-36">
       <section className="mx-auto max-w-6xl px-6 pb-24">
-        <p className="mb-4 text-xs uppercase tracking-widest2" style={{ color: "var(--accent)" }}>
+        <p className="mb-4 text-xs uppercase font-medium tracking-widest2" style={{ color: "var(--accent)" }}>
           The Screening Room
         </p>
         <h1 className="display text-5xl leading-[0.95] tracking-tightest md:text-8xl">
