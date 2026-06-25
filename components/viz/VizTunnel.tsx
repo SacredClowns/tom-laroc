@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { usePhase, type Phase } from "@/lib/phase";
 import { audioState, vizEnergy } from "@/lib/audio";
+import { vizTargetHex, tickFlash } from "@/lib/viz";
 
 const TINT: Record<Phase, string> = {
   warmup: "#6c8cff",
@@ -31,7 +32,8 @@ export default function VizTunnel() {
 
   useFrame((state, delta) => {
     audioState.level += (audioState.target - audioState.level) * Math.min(1, delta * 2.5);
-    const e = vizEnergy(audioState.level, state.clock.elapsedTime, audioState.playing);
+    const f = tickFlash(delta);
+    const e = vizEnergy(audioState.level, state.clock.elapsedTime, audioState.playing) + f;
     const speed = (3 + e * 18) * delta;
 
     refs.current.forEach((m, i) => {
@@ -42,7 +44,7 @@ export default function VizTunnel() {
       const s = 1 + Math.sin(state.clock.elapsedTime + i) * 0.05 + e * 0.15;
       m.scale.set(s, s, 1);
     });
-    tint.set(TINT[phase]);
+    tint.set(vizTargetHex(TINT[phase]));
     material.color.lerp(tint, Math.min(1, delta * 1.5));
   });
 

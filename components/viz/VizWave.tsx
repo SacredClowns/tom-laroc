@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { usePhase, type Phase } from "@/lib/phase";
 import { audioState, vizEnergy } from "@/lib/audio";
+import { vizTargetHex, tickFlash } from "@/lib/viz";
 
 const TINT: Record<Phase, [string, string]> = {
   warmup: ["#1b2a55", "#6c8cff"],
@@ -57,13 +58,14 @@ export default function VizWave() {
 
   useFrame((state, delta) => {
     audioState.level += (audioState.target - audioState.level) * Math.min(1, delta * 2.5);
-    const e = vizEnergy(audioState.level, state.clock.elapsedTime, audioState.playing);
+    const f = tickFlash(delta);
+    const e = vizEnergy(audioState.level, state.clock.elapsedTime, audioState.playing) + f * 1.2;
     const m = mat.current;
     if (m) {
       m.uniforms.uTime.value = state.clock.elapsedTime;
       m.uniforms.uEnergy.value = e;
       a.set(TINT[phase][0]);
-      b.set(TINT[phase][1]);
+      b.set(vizTargetHex(TINT[phase][1]));
       (m.uniforms.uColorA.value as THREE.Color).lerp(a, Math.min(1, delta * 1.5));
       (m.uniforms.uColorB.value as THREE.Color).lerp(b, Math.min(1, delta * 1.5));
     }

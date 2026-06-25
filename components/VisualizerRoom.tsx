@@ -14,6 +14,20 @@ import VizSpectrum from "@/components/viz/VizSpectrum";
 import VizTunnel from "@/components/viz/VizTunnel";
 import VizGalaxy from "@/components/viz/VizGalaxy";
 import Marquee from "@/components/Marquee";
+import { setVizColor, triggerFlash } from "@/lib/viz";
+import { Leaf, Bolt, Sparkle, Flame } from "@/components/FxIcons";
+
+const PALETTE = [
+  "#8b6cff", "#5b8cff", "#22d3ee", "#34d399", "#a3e635",
+  "#ffd166", "#ff8a3d", "#ff4d6d", "#ff5fd2", "#ffffff",
+];
+
+const FX = [
+  { key: "leaf", color: "#3fbf5f", strength: 1.0, Icon: Leaf },
+  { key: "bolt", color: "#ffffff", strength: 1.3, Icon: Bolt },
+  { key: "spark", color: "#8b6cff", strength: 1.1, Icon: Sparkle },
+  { key: "flame", color: "#ff6a3d", strength: 1.2, Icon: Flame },
+];
 
 type Mode = "orb" | "wave" | "spectrum" | "tunnel" | "galaxy" | "warp";
 const MODES: { id: Mode; label: string }[] = [
@@ -90,8 +104,37 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
   const [mode, setMode] = useState<Mode>("orb");
   const [idx, setIdx] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [sel, setSel] = useState<string | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const widgetRef = useRef<any>(null);
+  const prismRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  function clearPrism() {
+    if (prismRef.current) {
+      clearInterval(prismRef.current);
+      prismRef.current = null;
+    }
+  }
+  function chooseColor(c: string) {
+    clearPrism();
+    setVizColor(c);
+    setSel(c);
+  }
+  function chooseAuto() {
+    clearPrism();
+    setVizColor(null);
+    setSel(null);
+  }
+  function choosePrism() {
+    clearPrism();
+    setSel("prism");
+    let h = 0;
+    prismRef.current = setInterval(() => {
+      h = (h + 14) % 360;
+      setVizColor(`hsl(${h}, 90%, 62%)`);
+    }, 110);
+  }
+  useEffect(() => () => clearPrism(), []);
 
   const hasMixes = mixes.length > 0;
   const current = hasMixes ? mixes[idx] : null;
@@ -134,8 +177,13 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
   function pick(i: number) {
     setIdx(i);
     const w = widgetRef.current;
-    if (w && current) {
-      w.load(mixes[i].key, true).catch(() => {});
+    if (w && typeof w.load === "function") {
+      try {
+        const p = w.load(mixes[i].key, true);
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      } catch {
+        /* widget not ready yet — the iframe src already points at the mix */
+      }
     }
   }
 
@@ -176,6 +224,59 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
             backgroundColor: "color-mix(in srgb, var(--bg) 80%, transparent)",
           }}
         >
+          {/* color picker + FX triggers */}
+          <div className="mb-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={chooseAuto}
+                title="Auto (phase color)"
+                className="flex h-5 w-5 items-center justify-center rounded-full border text-[8px]"
+                style={{
+                  borderColor: sel === null ? "var(--fg)" : "var(--accent-soft)",
+                  color: "var(--muted)",
+                }}
+              >
+                A
+              </button>
+              {PALETTE.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => chooseColor(c)}
+                  aria-label={`color ${c}`}
+                  className="h-5 w-5 rounded-full"
+                  style={{
+                    background: c,
+                    outline: sel === c ? "2px solid var(--fg)" : "none",
+                    outlineOffset: 2,
+                  }}
+                />
+              ))}
+              <button
+                onClick={choosePrism}
+                title="Prism (cycle colors)"
+                className="h-5 w-5 rounded-full"
+                style={{
+                  background:
+                    "conic-gradient(from 0deg, #ff4d6d, #ffd166, #34d399, #22d3ee, #8b6cff, #ff5fd2, #ff4d6d)",
+                  outline: sel === "prism" ? "2px solid var(--fg)" : "none",
+                  outlineOffset: 2,
+                }}
+              />
+            </div>
+            <div className="flex items-center gap-3" style={{ color: "var(--fg)" }}>
+              {FX.map(({ key, color, strength, Icon }) => (
+                <button
+                  key={key}
+                  onClick={() => triggerFlash(color, strength)}
+                  title={`${key} FX`}
+                  className="opacity-60 transition-opacity hover:opacity-100"
+                >
+                  <Icon className="h-5 w-5" />
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* visualizer switcher */}
           <div className="mb-3 flex flex-wrap items-center justify-center gap-2">
             {MODES.map((m) => {
@@ -209,9 +310,8 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
               </button>
               <iframe
                 ref={iframeRef}
-                key={current!.key}
-                title={current!.name}
-                src={feed(current!.key)}
+                title="Mixcloud player"
+                src={feed(mixes[0].key)}
                 width="100%"
                 height="60"
                 frameBorder="0"

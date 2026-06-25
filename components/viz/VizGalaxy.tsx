@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { usePhase, type Phase } from "@/lib/phase";
 import { audioState, vizEnergy } from "@/lib/audio";
+import { vizTargetHex, tickFlash } from "@/lib/viz";
 
 const TINT: Record<Phase, string> = {
   warmup: "#6c8cff",
@@ -38,13 +39,14 @@ export default function VizGalaxy({ count = 6000 }: { count?: number }) {
 
   useFrame((state, delta) => {
     audioState.level += (audioState.target - audioState.level) * Math.min(1, delta * 2.5);
-    const e = vizEnergy(audioState.level, state.clock.elapsedTime, audioState.playing);
+    const f = tickFlash(delta);
+    const e = vizEnergy(audioState.level, state.clock.elapsedTime, audioState.playing) + f;
     if (ref.current) {
       ref.current.rotation.y += delta * (0.06 + e * 0.25);
       ref.current.rotation.x = -0.5; // tilt the disc toward camera
     }
     if (matRef.current) {
-      tint.set(TINT[phase]);
+      tint.set(vizTargetHex(TINT[phase]));
       matRef.current.color.lerp(tint, Math.min(1, delta * 1.5));
       matRef.current.size = 0.022 + e * 0.02;
       matRef.current.opacity = 0.7 + e * 0.3;

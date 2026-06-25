@@ -6,6 +6,7 @@ import * as THREE from "three";
 import { vertexShader, fragmentShader } from "./shaders";
 import { usePhase, type Phase } from "@/lib/phase";
 import { audioState } from "@/lib/audio";
+import { vizTargetHex, tickFlash } from "@/lib/viz";
 
 // Per-phase look: [colorA, colorB, turbulence/intensity 0..1]
 const PHASE_LOOK: Record<Phase, { a: string; b: string; intensity: number }> = {
@@ -43,16 +44,20 @@ export default function FrequencyOrb({ detail = 24 }: { detail?: number }) {
 
   useFrame((state, delta) => {
     const look = PHASE_LOOK[phase];
-    target.a.set(look.a);
-    target.b.set(look.b);
+    // honor the color picker / FX flash; fall back to the phase look
+    const hex = vizTargetHex(look.b);
+    const overridden = hex.toLowerCase() !== look.b.toLowerCase();
+    target.a.set(overridden ? hex : look.a);
+    target.b.set(hex);
     target.intensity = look.intensity;
 
     // ease audio energy toward target, with a living pulse while playing
     audioState.level += (audioState.target - audioState.level) * Math.min(1, delta * 2.5);
+    const f = tickFlash(delta);
     const pulse = audioState.playing
       ? 0.5 + 0.5 * Math.sin(state.clock.elapsedTime * 6.0)
       : 1.0;
-    const energy = audioState.level * (0.55 + 0.45 * pulse);
+    const energy = audioState.level * (0.55 + 0.45 * pulse) + f * 0.9;
 
     const m = matRef.current;
     if (m) {

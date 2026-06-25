@@ -4,6 +4,7 @@ import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { usePhase, type Phase } from "@/lib/phase";
+import { vizTargetHex, vizFlash } from "@/lib/viz";
 
 const PHASE_TINT: Record<Phase, string> = {
   warmup: "#6c8cff",
@@ -38,8 +39,9 @@ export default function Particles({ count = 1400 }: { count?: number }) {
       ref.current.rotation.z -= delta * 0.008;
     }
     if (matRef.current) {
-      tint.set(PHASE_TINT[phase]);
+      tint.set(vizTargetHex(PHASE_TINT[phase]));
       matRef.current.color.lerp(tint, Math.min(1, delta * 1.5));
+      matRef.current.opacity = 0.7 + vizFlash() * 0.3;
     }
   });
 

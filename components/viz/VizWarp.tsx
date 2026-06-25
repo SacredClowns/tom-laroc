@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { usePhase, type Phase } from "@/lib/phase";
 import { audioState, vizEnergy } from "@/lib/audio";
+import { vizTargetHex, tickFlash } from "@/lib/viz";
 
 const TINT: Record<Phase, string> = {
   warmup: "#6c8cff",
@@ -35,7 +36,8 @@ export default function VizWarp({ count = 1800 }: { count?: number }) {
 
   useFrame((state, delta) => {
     audioState.level += (audioState.target - audioState.level) * Math.min(1, delta * 2.5);
-    const e = vizEnergy(audioState.level, state.clock.elapsedTime, audioState.playing);
+    const f = tickFlash(delta);
+    const e = vizEnergy(audioState.level, state.clock.elapsedTime, audioState.playing) + f;
     const speed = (2 + e * 14) * delta;
 
     const pts = ref.current;
@@ -57,7 +59,7 @@ export default function VizWarp({ count = 1800 }: { count?: number }) {
       pts.rotation.z += delta * (0.05 + e * 0.2);
     }
     if (matRef.current) {
-      tint.set(TINT[phase]);
+      tint.set(vizTargetHex(TINT[phase]));
       matRef.current.color.lerp(tint, Math.min(1, delta * 1.5));
       matRef.current.size = 0.03 + e * 0.06;
       matRef.current.opacity = 0.6 + e * 0.4;
