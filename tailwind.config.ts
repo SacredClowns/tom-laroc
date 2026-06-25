@@ -41,11 +41,16 @@ const config: Config = {
           "60%": { transform: "translate(5%, 10%)" },
           "80%": { transform: "translate(10%, -10%)" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         breathe: "breathe 7s ease-in-out infinite",
         drift: "drift 12s ease-in-out infinite alternate",
         grain: "grain 1.2s steps(6) infinite",
+        marquee: "marquee 30s linear infinite",
       },
     },
   },

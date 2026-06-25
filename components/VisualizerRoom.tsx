@@ -10,6 +10,7 @@ import FrequencyOrb from "@/components/three/FrequencyOrb";
 import Particles from "@/components/three/Particles";
 import VizWave from "@/components/viz/VizWave";
 import VizWarp from "@/components/viz/VizWarp";
+import Marquee from "@/components/Marquee";
 
 type Mode = "orb" | "wave" | "warp";
 const MODES: { id: Mode; label: string }[] = [
@@ -132,15 +133,18 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
         </Canvas>
       )}
 
-      {/* title */}
-      <div className="pointer-events-none absolute left-0 right-0 top-24 z-10 px-6 text-center">
-        <p className="text-[11px] uppercase tracking-[0.4em]" style={{ color: "var(--accent)" }}>
-          The Visualizer
+      {/* title — now-playing marquee */}
+      <div className="pointer-events-none absolute left-0 right-0 top-24 z-10">
+        <p
+          className="px-6 text-center text-[11px] uppercase tracking-[0.4em]"
+          style={{ color: "var(--accent)" }}
+        >
+          The Visualizer · Now Playing
         </p>
         {current && (
-          <p className="mx-auto mt-3 max-w-2xl text-lg" style={{ color: "var(--fg)" }}>
-            {current.name}
-          </p>
+          <div className="mt-5 opacity-90">
+            <Marquee text={current.name} />
+          </div>
         )}
       </div>
 
