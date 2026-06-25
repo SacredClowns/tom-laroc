@@ -13,6 +13,7 @@ import VizWarp from "@/components/viz/VizWarp";
 import VizSpectrum from "@/components/viz/VizSpectrum";
 import VizTunnel from "@/components/viz/VizTunnel";
 import VizGalaxy from "@/components/viz/VizGalaxy";
+import VizLeaves from "@/components/viz/VizLeaves";
 import Marquee from "@/components/Marquee";
 import { setVizColor, triggerFlash } from "@/lib/viz";
 import { Leaf, Bolt, Sparkle, Flame } from "@/components/FxIcons";
@@ -29,7 +30,7 @@ const FX = [
   { key: "flame", color: "#ff6a3d", strength: 1.2, Icon: Flame },
 ];
 
-type Mode = "orb" | "wave" | "spectrum" | "tunnel" | "galaxy" | "warp";
+type Mode = "orb" | "wave" | "spectrum" | "tunnel" | "galaxy" | "warp" | "leaves";
 const MODES: { id: Mode; label: string }[] = [
   { id: "orb", label: "The Frequency" },
   { id: "wave", label: "Wave Field" },
@@ -37,6 +38,7 @@ const MODES: { id: Mode; label: string }[] = [
   { id: "tunnel", label: "Tunnel" },
   { id: "galaxy", label: "Galaxy" },
   { id: "warp", label: "Warp" },
+  { id: "leaves", label: "Leaves" },
 ];
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -85,6 +87,12 @@ function VizScene({ mode }: { mode: Mode }) {
       )}
       {mode === "galaxy" && <VizGalaxy />}
       {mode === "warp" && <VizWarp count={2000} />}
+      {mode === "leaves" && (
+        <>
+          <VizLeaves count={18} />
+          <Particles count={500} />
+        </>
+      )}
       <CameraRig />
       <EffectComposer>
         <Bloom intensity={1.8} luminanceThreshold={0.12} luminanceSmoothing={0.6} mipmapBlur />
@@ -94,10 +102,10 @@ function VizScene({ mode }: { mode: Mode }) {
   );
 }
 
-function feed(key: string) {
-  return `https://www.mixcloud.com/widget/iframe/?light=0&hide_cover=1&mini=1&feed=${encodeURIComponent(
-    key
-  )}`;
+function feed(key: string, autoplay = false) {
+  return `https://www.mixcloud.com/widget/iframe/?light=0&hide_cover=1&mini=1${
+    autoplay ? "&autoplay=1" : ""
+  }&feed=${encodeURIComponent(key)}`;
 }
 
 export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
@@ -106,7 +114,6 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
   const [mounted, setMounted] = useState(false);
   const [sel, setSel] = useState<string | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const widgetRef = useRef<any>(null);
   const prismRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   function clearPrism() {
@@ -142,21 +149,26 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
   // Only render the WebGL canvas on the client.
   useEffect(() => setMounted(true), []);
 
-  // Load the Mixcloud Widget API and bind play/pause to the visualizer energy.
+  // Bind the Mixcloud widget's play/pause to the visualizer energy. Re-runs on
+  // every track change because the iframe remounts (keyed by mix), so we never
+  // call widget.load — switching tracks just reloads the player. Bulletproof.
   useEffect(() => {
-    if (!hasMixes) return;
+    if (!hasMixes || !mounted) return;
     let cancelled = false;
 
     function init() {
       if (cancelled || !iframeRef.current || !window.Mixcloud) return;
-      const widget = window.Mixcloud.PlayerWidget(iframeRef.current);
-      widgetRef.current = widget;
-      widget.ready.then(() => {
-        if (cancelled) return;
-        widget.events.play.on(() => setPlaying(true));
-        widget.events.pause.on(() => setPlaying(false));
-        widget.events.ended.on(() => setPlaying(false));
-      });
+      try {
+        const widget = window.Mixcloud.PlayerWidget(iframeRef.current);
+        widget.ready.then(() => {
+          if (cancelled) return;
+          widget.events.play.on(() => setPlaying(true));
+          widget.events.pause.on(() => setPlaying(false));
+          widget.events.ended.on(() => setPlaying(false));
+        });
+      } catch {
+        /* ignore — visuals still run on their own */
+      }
     }
 
     if (window.Mixcloud) {
@@ -172,19 +184,10 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
       cancelled = true;
       setPlaying(false);
     };
-  }, [hasMixes]);
+  }, [hasMixes, mounted, current?.key]);
 
   function pick(i: number) {
-    setIdx(i);
-    const w = widgetRef.current;
-    if (w && typeof w.load === "function") {
-      try {
-        const p = w.load(mixes[i].key, true);
-        if (p && typeof p.catch === "function") p.catch(() => {});
-      } catch {
-        /* widget not ready yet — the iframe src already points at the mix */
-      }
-    }
+    setIdx(i); // iframe remounts with the new mix (keyed by key) and autoplays
   }
 
   return (
@@ -310,8 +313,9 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
               </button>
               <iframe
                 ref={iframeRef}
+                key={current!.key}
                 title="Mixcloud player"
-                src={feed(mixes[0].key)}
+                src={feed(current!.key, idx !== 0)}
                 width="100%"
                 height="60"
                 frameBorder="0"
