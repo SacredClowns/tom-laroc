@@ -57,6 +57,19 @@ export default function MixcloudArchive({ mixes }: { mixes: Mix[] }) {
             allow="autoplay"
           />
         </div>
+        <p className="mt-2 text-center text-[11px]" style={{ color: "var(--muted)" }}>
+          Player not loading?{" "}
+          <a
+            href={`https://www.mixcloud.com${current.key}`}
+            target="_blank"
+            rel="noreferrer"
+            className="underline"
+            style={{ color: "var(--accent)" }}
+          >
+            Open this mix on Mixcloud ↗
+          </a>{" "}
+          (Brave Shields / ad-blockers can block the embed)
+        </p>
       </div>
 
       {/* Search + count */}
