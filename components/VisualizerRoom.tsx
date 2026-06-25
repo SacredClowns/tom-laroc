@@ -123,6 +123,7 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
   const [mounted, setMounted] = useState(false);
   const [sel, setSel] = useState<string | null>(null);
   const [glyph, setGlyph] = useState<Glyph>("leaf");
+  const [chrome, setChrome] = useState(true); // show UI (controls + title)
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const prismRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -213,8 +214,41 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
         </Canvas>
       )}
 
+      {/* immerse toggle — hide all UI to just watch the visuals */}
+      <button
+        onClick={() => setChrome((c) => !c)}
+        title={chrome ? "Hide controls" : "Show controls"}
+        aria-label={chrome ? "Hide controls" : "Show controls"}
+        className="absolute right-6 top-24 z-30 flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-xl transition-opacity hover:opacity-100"
+        style={{
+          borderColor: "var(--accent-soft)",
+          backgroundColor: "color-mix(in srgb, var(--bg) 55%, transparent)",
+          color: "var(--fg)",
+          opacity: chrome ? 0.65 : 0.35,
+        }}
+      >
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6">
+          {chrome ? (
+            <>
+              <path d="M2 12 C5 6 19 6 22 12 C19 18 5 18 2 12 Z" />
+              <circle cx="12" cy="12" r="3" />
+              <line x1="3" y1="3" x2="21" y2="21" />
+            </>
+          ) : (
+            <>
+              <path d="M2 12 C5 6 19 6 22 12 C19 18 5 18 2 12 Z" />
+              <circle cx="12" cy="12" r="3" />
+            </>
+          )}
+        </svg>
+      </button>
+
       {/* title — now-playing marquee */}
-      <div className="pointer-events-none absolute left-0 right-0 top-24 z-10">
+      <div
+        className={`pointer-events-none absolute left-0 right-0 top-24 z-10 transition-opacity duration-500 ${
+          chrome ? "opacity-100" : "opacity-0"
+        }`}
+      >
         <p
           className="animate-blink px-6 text-center text-[11px] uppercase font-medium tracking-[0.2em]"
           style={{ color: "var(--accent)" }}
@@ -229,7 +263,11 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
       </div>
 
       {/* controls */}
-      <div className="absolute bottom-6 left-1/2 z-20 w-[min(94vw,860px)] -translate-x-1/2">
+      <div
+        className={`absolute bottom-6 left-1/2 z-20 w-[min(94vw,860px)] -translate-x-1/2 transition-all duration-500 ${
+          chrome ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-10 opacity-0"
+        }`}
+      >
         <div
           className="rounded-2xl border p-4 backdrop-blur-xl"
           style={{
