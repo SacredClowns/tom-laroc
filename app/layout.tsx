@@ -4,7 +4,6 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import { PhaseProvider } from "@/lib/phase";
 import Nav from "@/components/Nav";
-import MiniPlayer from "@/components/MiniPlayer";
 import { SITE, SITE_URL, jsonLd } from "@/lib/seo";
 
 const syne = Syne({
@@ -71,7 +70,6 @@ export default function RootLayout({
           <SmoothScroll>
             <Nav />
             {children}
-            <MiniPlayer />
           </SmoothScroll>
         </PhaseProvider>
       </body>

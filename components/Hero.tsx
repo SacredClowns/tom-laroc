@@ -59,7 +59,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, delay: 0.45 }}
-          className="display text-6xl leading-[0.9] tracking-tightest mix-blend-screen md:text-[10rem]"
+          className="display animate-shimmer text-6xl font-extrabold leading-[0.86] tracking-tightest md:text-[10.5rem]"
+          style={{
+            backgroundImage:
+              "linear-gradient(100deg, #8b6cff, #22d3ee, #ffd166, #ff6a3d, #ff5fd2, #8b6cff)",
+            backgroundSize: "200% auto",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            color: "transparent",
+            filter: "drop-shadow(0 0 30px rgba(139,108,255,0.5)) drop-shadow(0 2px 10px rgba(0,0,0,0.5))",
+          }}
         >
           TOM LAROC
         </motion.h1>

@@ -49,6 +49,10 @@ const config: Config = {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.25" },
         },
+        shimmer: {
+          "0%": { backgroundPosition: "0% center" },
+          "100%": { backgroundPosition: "-200% center" },
+        },
       },
       animation: {
         breathe: "breathe 7s ease-in-out infinite",
@@ -56,6 +60,7 @@ const config: Config = {
         grain: "grain 1.2s steps(6) infinite",
         marquee: "marquee 62s linear infinite",
         blink: "blink 1.8s ease-in-out infinite",
+        shimmer: "shimmer 9s linear infinite",
       },
     },
   },
