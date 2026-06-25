@@ -49,3 +49,36 @@ export function Flame({ className }: P) {
     </svg>
   );
 }
+
+export function Note({ className }: P) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M9 4 v11.6 a3 3 0 1 1 -2 -2.8 V6.2 L19 4 z" />
+    </svg>
+  );
+}
+
+export function Record({ className }: P) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="12" cy="12" r="2.4" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function Star({ className }: P) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M12 2 l2.9 6.2 6.8 .7 -5.1 4.6 1.5 6.7 -6.1 -3.5 -6.1 3.5 1.5 -6.7 -5.1 -4.6 6.8 -.7 z" />
+    </svg>
+  );
+}
+
+export function Diamond({ className }: P) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M12 2 L21 9 L12 22 L3 9 Z" />
+    </svg>
+  );
+}

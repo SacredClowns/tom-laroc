@@ -13,10 +13,19 @@ import VizWarp from "@/components/viz/VizWarp";
 import VizSpectrum from "@/components/viz/VizSpectrum";
 import VizTunnel from "@/components/viz/VizTunnel";
 import VizGalaxy from "@/components/viz/VizGalaxy";
-import VizLeaves from "@/components/viz/VizLeaves";
+import VizSwarm, { type Glyph } from "@/components/viz/VizSwarm";
 import Marquee from "@/components/Marquee";
 import { setVizColor, triggerFlash } from "@/lib/viz";
-import { Leaf, Bolt, Sparkle, Flame } from "@/components/FxIcons";
+import { Leaf, Bolt, Sparkle, Flame, Note, Record, Star, Diamond } from "@/components/FxIcons";
+
+const GLYPHS: { id: Glyph; Icon: (p: { className?: string }) => React.ReactElement }[] = [
+  { id: "leaf", Icon: Leaf },
+  { id: "note", Icon: Note },
+  { id: "record", Icon: Record },
+  { id: "star", Icon: Star },
+  { id: "bolt", Icon: Bolt },
+  { id: "diamond", Icon: Diamond },
+];
 
 const PALETTE = [
   "#8b6cff", "#5b8cff", "#22d3ee", "#34d399", "#a3e635",
@@ -38,7 +47,7 @@ const MODES: { id: Mode; label: string }[] = [
   { id: "tunnel", label: "Tunnel" },
   { id: "galaxy", label: "Galaxy" },
   { id: "warp", label: "Warp" },
-  { id: "leaves", label: "Leaves" },
+  { id: "leaves", label: "Swarm" },
 ];
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -57,7 +66,7 @@ function CameraRig() {
   return null;
 }
 
-function VizScene({ mode }: { mode: Mode }) {
+function VizScene({ mode, glyph }: { mode: Mode; glyph: Glyph }) {
   return (
     <>
       <ambientLight intensity={0.4} />
@@ -89,7 +98,7 @@ function VizScene({ mode }: { mode: Mode }) {
       {mode === "warp" && <VizWarp count={2000} />}
       {mode === "leaves" && (
         <>
-          <VizLeaves count={18} />
+          <VizSwarm glyph={glyph} count={18} />
           <Particles count={500} />
         </>
       )}
@@ -113,6 +122,7 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
   const [idx, setIdx] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [sel, setSel] = useState<string | null>(null);
+  const [glyph, setGlyph] = useState<Glyph>("leaf");
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const prismRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -199,7 +209,7 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
           camera={{ position: [0, 0, 4.6], fov: 45 }}
           gl={{ antialias: true, alpha: true, powerPreference: "high-performance", toneMapping: THREE.ACESFilmicToneMapping }}
         >
-          <VizScene mode={mode} />
+          <VizScene mode={mode} glyph={glyph} />
         </Canvas>
       )}
 
@@ -300,6 +310,29 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
               );
             })}
           </div>
+
+          {/* glyph picker — only in Swarm mode */}
+          {mode === "leaves" && (
+            <div className="mb-3 flex items-center justify-center gap-3">
+              {GLYPHS.map(({ id, Icon }) => {
+                const on = id === glyph;
+                return (
+                  <button
+                    key={id}
+                    onClick={() => setGlyph(id)}
+                    title={id}
+                    className="rounded-full border p-2 transition-colors"
+                    style={{
+                      borderColor: on ? "var(--accent)" : "var(--accent-soft)",
+                      color: on ? "var(--accent)" : "var(--muted)",
+                    }}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           {hasMixes ? (
             <div className="flex items-center gap-3">
