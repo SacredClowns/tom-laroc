@@ -125,6 +125,7 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
   const [sel, setSel] = useState<string | null>(null);
   const [glyph, setGlyph] = useState<Glyph>("leaf");
   const [chrome, setChrome] = useState(true); // show UI (controls + title)
+  const [autoStart, setAutoStart] = useState(false); // arrived via "Listen" → autoplay
   const [fs, setFs] = useState(false); // fullscreen
   const [auto, setAuto] = useState(false); // ambient auto-cycle
   const rootRef = useRef<HTMLDivElement>(null);
@@ -191,6 +192,15 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
 
   // Only render the WebGL canvas on the client.
   useEffect(() => setMounted(true), []);
+
+  // Honor the "Listen" launcher from the mini-player: ?play=1&mix=N
+  useEffect(() => {
+    if (typeof window === "undefined" || mixes.length === 0) return;
+    const p = new URLSearchParams(window.location.search);
+    const m = Number(p.get("mix"));
+    if (!Number.isNaN(m) && m >= 0 && m < mixes.length) setIdx(m);
+    if (p.get("play") === "1") setAutoStart(true);
+  }, [mixes.length]);
 
   // Bind the Mixcloud widget's play/pause to the visualizer energy. Re-runs on
   // every track change because the iframe remounts (keyed by mix), so we never
@@ -466,7 +476,7 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
                 ref={iframeRef}
                 key={current!.key}
                 title="Mixcloud player"
-                src={feed(current!.key, idx !== 0)}
+                src={feed(current!.key, autoStart || idx !== 0)}
                 width="100%"
                 height="60"
                 frameBorder="0"
