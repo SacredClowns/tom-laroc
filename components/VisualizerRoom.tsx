@@ -10,12 +10,18 @@ import FrequencyOrb from "@/components/three/FrequencyOrb";
 import Particles from "@/components/three/Particles";
 import VizWave from "@/components/viz/VizWave";
 import VizWarp from "@/components/viz/VizWarp";
+import VizSpectrum from "@/components/viz/VizSpectrum";
+import VizTunnel from "@/components/viz/VizTunnel";
+import VizGalaxy from "@/components/viz/VizGalaxy";
 import Marquee from "@/components/Marquee";
 
-type Mode = "orb" | "wave" | "warp";
+type Mode = "orb" | "wave" | "spectrum" | "tunnel" | "galaxy" | "warp";
 const MODES: { id: Mode; label: string }[] = [
   { id: "orb", label: "The Frequency" },
   { id: "wave", label: "Wave Field" },
+  { id: "spectrum", label: "Spectrum" },
+  { id: "tunnel", label: "Tunnel" },
+  { id: "galaxy", label: "Galaxy" },
   { id: "warp", label: "Warp" },
 ];
 
@@ -51,6 +57,19 @@ function VizScene({ mode }: { mode: Mode }) {
           <Particles count={900} />
         </>
       )}
+      {mode === "spectrum" && (
+        <>
+          <VizSpectrum />
+          <Particles count={700} />
+        </>
+      )}
+      {mode === "tunnel" && (
+        <>
+          <VizTunnel />
+          <Particles count={700} />
+        </>
+      )}
+      {mode === "galaxy" && <VizGalaxy />}
       {mode === "warp" && <VizWarp count={2000} />}
       <CameraRig />
       <EffectComposer>
