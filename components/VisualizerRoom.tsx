@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
@@ -213,6 +214,22 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
           <VizScene mode={mode} glyph={glyph} />
         </Canvas>
       )}
+
+      {/* back to the website — always visible (visualizer hides the nav) */}
+      <Link
+        href="/"
+        title="Back to tomlaroc.com"
+        className="absolute left-6 top-24 z-30 flex h-10 items-center gap-2 rounded-full border px-4 backdrop-blur-xl transition-opacity hover:opacity-100"
+        style={{
+          borderColor: "var(--accent-soft)",
+          backgroundColor: "color-mix(in srgb, var(--bg) 55%, transparent)",
+          color: "var(--fg)",
+          opacity: 0.7,
+        }}
+      >
+        <span aria-hidden>←</span>
+        <span className="text-[11px] uppercase font-medium tracking-[0.2em]">Home</span>
+      </Link>
 
       {/* immerse toggle — hide all UI to just watch the visuals */}
       <button
