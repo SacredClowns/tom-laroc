@@ -16,7 +16,7 @@ export default function SignalChain() {
   return (
     <section id="signal" className="mx-auto max-w-5xl px-6 py-32">
       <p
-        className="mb-3 text-xs uppercase font-medium tracking-widest2"
+        className="mb-3 text-xs uppercase font-display font-medium tracking-widest2"
         style={{ color: "var(--accent)" }}
       >
         The Signal Chain

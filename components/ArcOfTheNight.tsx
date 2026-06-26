@@ -11,7 +11,7 @@ export default function ArcOfTheNight() {
     <section id="arc" className="relative mx-auto max-w-6xl px-6 py-32">
       <div className="mb-12 text-center">
         <p
-          className="mb-3 text-xs uppercase font-medium tracking-widest2"
+          className="mb-3 text-xs uppercase font-display font-medium tracking-widest2"
           style={{ color: "var(--accent)" }}
         >
           The Arc of the Night
@@ -33,7 +33,7 @@ export default function ArcOfTheNight() {
             <button
               key={p.id}
               onClick={() => setPhase(p.id)}
-              className="rounded-full border px-6 py-3 text-xs uppercase font-medium tracking-[0.18em] transition-all duration-500"
+              className="rounded-full border px-6 py-3 text-xs uppercase font-display font-medium tracking-[0.18em] transition-all duration-500"
               style={{
                 borderColor: active ? "var(--accent)" : "var(--accent-soft)",
                 backgroundColor: active ? "var(--accent)" : "transparent",
@@ -73,7 +73,7 @@ export default function ArcOfTheNight() {
             </div>
             <div className="md:text-right">
               <p
-                className="text-[10px] uppercase font-medium tracking-[0.18em]"
+                className="text-[10px] uppercase font-display font-medium tracking-[0.18em]"
                 style={{ color: "var(--muted)" }}
               >
                 Now playing

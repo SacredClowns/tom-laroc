@@ -74,7 +74,7 @@ export default function MixcloudArchive({ mixes }: { mixes: Mix[] }) {
 
       {/* Search + count */}
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-        <p className="text-xs uppercase font-medium tracking-[0.18em]" style={{ color: "var(--muted)" }}>
+        <p className="text-xs uppercase font-display font-medium tracking-[0.18em]" style={{ color: "var(--muted)" }}>
           {mixes.length} mixes · the surviving archive
         </p>
         <input

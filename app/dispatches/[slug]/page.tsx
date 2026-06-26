@@ -74,14 +74,14 @@ export default async function DispatchPage({
       <article className="mx-auto max-w-3xl px-6 pb-24">
         <Link
           href="/dispatches"
-          className="text-xs uppercase font-medium tracking-[0.2em]"
+          className="text-xs uppercase font-display font-medium tracking-[0.2em]"
           style={{ color: "var(--accent)" }}
         >
           ← Dispatches
         </Link>
 
         <div
-          className="mt-8 flex items-center gap-3 text-[11px] uppercase font-medium tracking-[0.2em]"
+          className="mt-8 flex items-center gap-3 text-[11px] uppercase font-display font-medium tracking-[0.2em]"
           style={{ color: "var(--muted)" }}
         >
           <span>{fmt(d.date)}</span>
@@ -127,7 +127,7 @@ export default async function DispatchPage({
           <p className="display text-2xl">Want this for your business?</p>
           <Link
             href="/bookings"
-            className="shrink-0 rounded-full px-7 py-4 text-xs uppercase font-medium tracking-[0.2em]"
+            className="shrink-0 rounded-full px-7 py-4 text-xs uppercase font-display font-medium tracking-[0.2em]"
             style={{ backgroundColor: "var(--accent)", color: "var(--bg)" }}
           >
             Work with Tom
@@ -137,7 +137,7 @@ export default async function DispatchPage({
         {/* more */}
         {more.length > 0 && (
           <div className="mt-16">
-            <p className="text-xs uppercase font-medium tracking-[0.18em]" style={{ color: "var(--muted)" }}>
+            <p className="text-xs uppercase font-display font-medium tracking-[0.18em]" style={{ color: "var(--muted)" }}>
               Keep reading
             </p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">

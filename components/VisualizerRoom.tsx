@@ -269,7 +269,7 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
         }}
       >
         <span aria-hidden>←</span>
-        <span className="text-[11px] uppercase font-medium tracking-[0.2em]">Home</span>
+        <span className="text-[11px] uppercase font-display font-medium tracking-[0.2em]">Home</span>
       </Link>
 
       {/* top-right cluster: ambient auto-cycle · fullscreen · immerse */}
@@ -340,7 +340,7 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
         }`}
       >
         <p
-          className="animate-blink px-6 text-center text-[11px] uppercase font-medium tracking-[0.2em]"
+          className="animate-blink px-6 text-center text-[11px] uppercase font-display font-medium tracking-[0.2em]"
           style={{ color: "var(--accent)" }}
         >
           The Visualizer · Now Playing
@@ -426,7 +426,7 @@ export default function VisualizerRoom({ mixes }: { mixes: Mix[] }) {
                 <button
                   key={m.id}
                   onClick={() => setMode(m.id)}
-                  className="rounded-full border px-4 py-2 text-xs uppercase font-medium tracking-[0.2em] transition-all"
+                  className="rounded-full border px-4 py-2 text-xs uppercase font-display font-medium tracking-[0.2em] transition-all"
                   style={{
                     borderColor: on ? "var(--accent)" : "var(--accent-soft)",
                     backgroundColor: on ? "var(--accent)" : "transparent",

@@ -18,7 +18,7 @@ export default function InstagramGrid({ posts }: { posts: InstaPost[] }) {
     <section id="instagram" className="mx-auto max-w-6xl px-6 py-32">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="mb-3 text-xs uppercase font-medium tracking-widest2" style={{ color: "var(--accent)" }}>
+          <p className="mb-3 text-xs uppercase font-display font-medium tracking-widest2" style={{ color: "var(--accent)" }}>
             On Instagram
           </p>
           <h2 className="display text-3xl md:text-5xl">
@@ -34,7 +34,7 @@ export default function InstagramGrid({ posts }: { posts: InstaPost[] }) {
           href={IG_URL}
           target="_blank"
           rel="noreferrer"
-          className="rounded-full px-6 py-3 text-xs uppercase font-medium tracking-[0.2em]"
+          className="rounded-full px-6 py-3 text-xs uppercase font-display font-medium tracking-[0.2em]"
           style={{ backgroundColor: "var(--accent)", color: "var(--bg)" }}
         >
           Follow

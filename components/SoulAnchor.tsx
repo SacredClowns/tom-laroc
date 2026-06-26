@@ -12,7 +12,7 @@ export default function SoulAnchor() {
         transition={{ duration: 1 }}
       >
         <p
-          className="mb-6 text-xs uppercase font-medium tracking-widest2"
+          className="mb-6 text-xs uppercase font-display font-medium tracking-widest2"
           style={{ color: "var(--accent)" }}
         >
           Roots

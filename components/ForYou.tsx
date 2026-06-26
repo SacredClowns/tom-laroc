@@ -45,7 +45,7 @@ export default function ForYou({ name, company, challenge, focus }: Props) {
       <div className="relative z-10 mx-auto flex min-h-screen max-w-4xl flex-col justify-center px-6 py-28">
         <motion.p
           {...fade(0.1)}
-          className="text-xs uppercase font-medium tracking-[0.2em]"
+          className="text-xs uppercase font-display font-medium tracking-[0.2em]"
           style={{ color: "var(--accent)" }}
         >
           A note from Tom Laroc · {subject}
@@ -65,7 +65,7 @@ export default function ForYou({ name, company, challenge, focus }: Props) {
 
         {challenge && (
           <motion.div {...fade(0.6)} className="mt-10 max-w-2xl">
-            <p className="text-xs uppercase font-medium tracking-[0.18em]" style={{ color: "var(--accent)" }}>
+            <p className="text-xs uppercase font-display font-medium tracking-[0.18em]" style={{ color: "var(--accent)" }}>
               You said
             </p>
             <p className="display mt-3 text-2xl leading-snug md:text-4xl">
@@ -85,14 +85,14 @@ export default function ForYou({ name, company, challenge, focus }: Props) {
         <motion.div {...fade(0.9)} className="mt-12 flex flex-wrap gap-4">
           <a
             href={mailto}
-            className="rounded-full px-8 py-4 text-xs uppercase font-medium tracking-[0.2em]"
+            className="rounded-full px-8 py-4 text-xs uppercase font-display font-medium tracking-[0.2em]"
             style={{ backgroundColor: "var(--accent)", color: "var(--bg)" }}
           >
             Reply to Tom
           </a>
           <a
             href="/bookings#engagements"
-            className="rounded-full border px-8 py-4 text-xs uppercase font-medium tracking-[0.2em]"
+            className="rounded-full border px-8 py-4 text-xs uppercase font-display font-medium tracking-[0.2em]"
             style={{ borderColor: "var(--accent-soft)", color: "var(--fg)" }}
           >
             See how we&apos;d work

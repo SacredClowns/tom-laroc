@@ -210,7 +210,7 @@ export default function ConsultForm() {
         <button
           type="submit"
           disabled={state === "sending"}
-          className="rounded-full px-8 py-4 text-xs uppercase font-medium tracking-[0.2em] transition-opacity disabled:opacity-50"
+          className="rounded-full px-8 py-4 text-xs uppercase font-display font-medium tracking-[0.2em] transition-opacity disabled:opacity-50"
           style={{ backgroundColor: "var(--accent)", color: "var(--bg)" }}
         >
           {state === "sending" ? "Sending…" : "Send to Tom"}
@@ -225,7 +225,7 @@ const borderStyle = { borderColor: "var(--accent-soft)" as const };
 function Label({ children }: { children: React.ReactNode }) {
   return (
     <span
-      className="text-[11px] uppercase font-medium tracking-[0.2em]"
+      className="text-[11px] uppercase font-display font-medium tracking-[0.2em]"
       style={{ color: "var(--muted)" }}
     >
       {children}

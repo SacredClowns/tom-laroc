@@ -60,7 +60,7 @@ export default function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              className="whitespace-nowrap text-xs uppercase font-medium tracking-[0.18em] transition-opacity hover:opacity-100"
+              className="whitespace-nowrap text-xs uppercase font-display font-medium tracking-[0.18em] transition-opacity hover:opacity-100"
               style={{ color: "var(--muted)" }}
             >
               {l.label}
@@ -68,7 +68,7 @@ export default function Nav() {
           ))}
           <Link
             href="/inner-circle"
-            className="whitespace-nowrap rounded-full border px-4 py-2 text-xs uppercase font-medium tracking-[0.18em] transition-colors"
+            className="whitespace-nowrap rounded-full border px-4 py-2 text-xs uppercase font-display font-medium tracking-[0.18em] transition-colors"
             style={{ borderColor: "var(--accent)", color: "var(--accent)" }}
           >
             Inner Circle
@@ -77,7 +77,7 @@ export default function Nav() {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="text-xs uppercase font-medium tracking-[0.2em] lg:hidden"
+          className="text-xs uppercase font-display font-medium tracking-[0.2em] lg:hidden"
           style={{ color: "var(--fg)" }}
           aria-label="Toggle menu"
         >
@@ -95,7 +95,7 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="text-sm uppercase font-medium tracking-[0.2em]"
+              className="text-sm uppercase font-display font-medium tracking-[0.2em]"
               style={{ color: "var(--muted)" }}
             >
               {l.label}

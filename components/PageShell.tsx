@@ -15,7 +15,7 @@ export default function PageShell({
     <main className="min-h-screen pt-40">
       <section className="mx-auto max-w-5xl px-6 pb-32">
         <p
-          className="mb-4 text-xs uppercase font-medium tracking-widest2"
+          className="mb-4 text-xs uppercase font-display font-medium tracking-widest2"
           style={{ color: "var(--accent)" }}
         >
           {eyebrow}

@@ -42,7 +42,7 @@ export default async function AdminDashboard() {
         <div className="flex items-center justify-between">
           <div>
             <p
-              className="text-[11px] uppercase font-medium tracking-[0.2em]"
+              className="text-[11px] uppercase font-display font-medium tracking-[0.2em]"
               style={{ color: "var(--accent)" }}
             >
               Tom HQ
@@ -62,7 +62,7 @@ export default async function AdminDashboard() {
             >
               <p className="display text-4xl">{k.value}</p>
               <p
-                className="mt-1 text-[11px] uppercase font-medium tracking-[0.2em]"
+                className="mt-1 text-[11px] uppercase font-display font-medium tracking-[0.2em]"
                 style={{ color: "var(--muted)" }}
               >
                 {k.label}

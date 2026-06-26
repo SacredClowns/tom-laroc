@@ -36,7 +36,7 @@ export default function AdminLogin() {
   return (
     <form onSubmit={onSubmit} className="w-full max-w-sm">
       <p
-        className="mb-3 text-xs uppercase font-medium tracking-[0.2em]"
+        className="mb-3 text-xs uppercase font-display font-medium tracking-[0.2em]"
         style={{ color: "var(--accent)" }}
       >
         Tom HQ
@@ -65,7 +65,7 @@ export default function AdminLogin() {
       <button
         type="submit"
         disabled={loading}
-        className="mt-5 w-full rounded-full px-6 py-4 text-xs uppercase font-medium tracking-[0.2em] disabled:opacity-50"
+        className="mt-5 w-full rounded-full px-6 py-4 text-xs uppercase font-display font-medium tracking-[0.2em] disabled:opacity-50"
         style={{ backgroundColor: "var(--accent)", color: "var(--bg)" }}
       >
         {loading ? "…" : "Enter"}

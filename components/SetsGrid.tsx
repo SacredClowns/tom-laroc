@@ -9,7 +9,7 @@ export default function SetsGrid() {
       <div className="mb-12 flex items-end justify-between">
         <div>
           <p
-            className="mb-3 text-xs uppercase font-medium tracking-widest2"
+            className="mb-3 text-xs uppercase font-display font-medium tracking-widest2"
             style={{ color: "var(--accent)" }}
           >
             Sets &amp; Mixes
@@ -18,7 +18,7 @@ export default function SetsGrid() {
         </div>
         <a
           href="/sets"
-          className="hidden text-xs uppercase font-medium tracking-[0.2em] hover:opacity-70 md:block"
+          className="hidden text-xs uppercase font-display font-medium tracking-[0.2em] hover:opacity-70 md:block"
           style={{ color: "var(--muted)" }}
         >
           All sets →
@@ -46,7 +46,7 @@ export default function SetsGrid() {
             />
             <div className="flex items-center justify-between">
               <span
-                className="text-[10px] uppercase font-medium tracking-[0.18em]"
+                className="text-[10px] uppercase font-display font-medium tracking-[0.18em]"
                 style={{ color: "var(--accent)" }}
               >
                 {set.phase}
@@ -62,7 +62,7 @@ export default function SetsGrid() {
             <p className="mt-4 text-sm">{set.story}</p>
 
             <button
-              className="mt-6 flex items-center gap-3 text-xs uppercase font-medium tracking-[0.2em]"
+              className="mt-6 flex items-center gap-3 text-xs uppercase font-display font-medium tracking-[0.2em]"
               style={{ color: "var(--fg)" }}
             >
               <span

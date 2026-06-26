@@ -19,7 +19,7 @@ export default function FeaturedRelease() {
           }}
         >
           <div
-            className="absolute inset-0 flex items-center justify-center text-[10px] uppercase font-medium tracking-[0.18em]"
+            className="absolute inset-0 flex items-center justify-center text-[10px] uppercase font-display font-medium tracking-[0.18em]"
             style={{ color: "var(--bg)" }}
           >
             Cover art — placeholder
@@ -28,7 +28,7 @@ export default function FeaturedRelease() {
 
         <div>
           <p
-            className="mb-3 text-xs uppercase font-medium tracking-widest2"
+            className="mb-3 text-xs uppercase font-display font-medium tracking-widest2"
             style={{ color: "var(--accent)" }}
           >
             Latest Release · 2026
@@ -42,7 +42,7 @@ export default function FeaturedRelease() {
             ground up, generative visuals breathing with every hit.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3 text-xs uppercase font-medium tracking-[0.2em]">
+          <div className="mt-8 flex flex-wrap gap-3 text-xs uppercase font-display font-medium tracking-[0.2em]">
             {["Watch", "Spotify", "Apple", "Mixcloud"].map((l) => (
               <a
                 key={l}

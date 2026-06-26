@@ -11,7 +11,7 @@ export default function PressPage() {
     >
       <a
         href="#"
-        className="mt-12 inline-block rounded-full border px-7 py-4 text-xs uppercase font-medium tracking-[0.2em]"
+        className="mt-12 inline-block rounded-full border px-7 py-4 text-xs uppercase font-display font-medium tracking-[0.2em]"
         style={{ borderColor: "var(--accent)", color: "var(--accent)" }}
       >
         Download EPK (placeholder)

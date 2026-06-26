@@ -112,7 +112,7 @@ export default function MiniPlayer() {
               {current ? current.name : "Loading Tom's mixes…"}
             </span>
             <span
-              className="block text-[10px] uppercase font-medium tracking-[0.2em]"
+              className="block text-[10px] uppercase font-display font-medium tracking-[0.2em]"
               style={{ color: "var(--accent)" }}
             >
               {current ? "Listen in the visualizer ↗" : ""}
